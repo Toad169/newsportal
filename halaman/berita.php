@@ -1,6 +1,7 @@
 <?php 
 
 	include "config/config.php";
+	// session_start();
 
 	$query = mysqli_query($con, "SELECT * FROM tbl_posts WHERE kategori='berita' ORDER BY date DESC");
 

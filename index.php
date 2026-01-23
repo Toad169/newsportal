@@ -1,3 +1,12 @@
+<?php 
+session_start();
+
+// Redirect to beranda if no page parameter is set
+if(!isset($_GET['page'])) {
+	header("location: index.php?page=beranda");
+	exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,18 +40,57 @@
 	        <li class="nav-item">
 	          <a class="nav-link" href="index.php?page=berita">Berita</a>
 	        </li>
-	        <!-- <li class="nav-item">
-	          <a class="nav-link" href="index.php?page=kebijakan">Kebijakan</a>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            Kategori
+	          </a>
+	          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	            <?php 
+	              if(!isset($con)) {
+	                include "config/config.php";
+	              }
+	              $kat_query = mysqli_query($con, "SELECT * FROM tbl_categories ORDER BY nama_kategori ASC");
+	              while($kat = mysqli_fetch_array($kat_query)):
+	            ?>
+	            <li><a class="dropdown-item" href="index.php?page=kategori&id=<?= $kat['id_kategori'] ?>"><?= $kat['nama_kategori'] ?></a></li>
+	            <?php endwhile; ?>
+	          </ul>
 	        </li>
-	        <li class="nav-item">
-	          <a class="nav-link" href="index.php?page=peraturan">Peraturan</a>
-	        </li> -->
 	        <li class="nav-item">
 	          <a class="nav-link" href="index.php?page=galeri">Galeri</a>
 	        </li>
-	        <!-- <li class="nav-item">
-	          <a class="nav-link" href="index.php?page=struktur-organisasi">Struktur Organisasi</a>
-	        </li> -->
+	      </ul>
+	      <!-- Search Bar -->
+	      <form class="d-flex me-2" method="GET" action="index.php">
+	        <input type="hidden" name="page" value="search">
+	        <input class="form-control me-2" type="search" name="q" placeholder="Cari berita..." aria-label="Search" value="<?= isset($_GET['q']) ? htmlspecialchars($_GET['q']) : '' ?>">
+	        <button class="btn btn-outline-light" type="submit">
+	          <i class="ion-search"></i>
+	        </button>
+	      </form>
+	      <!-- User Menu -->
+	      <ul class="navbar-nav">
+	        <?php 
+	          if(isset($_SESSION['frontend_user_id'])):
+	        ?>
+	        <li class="nav-item dropdown">
+	          <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+	            <i class="ion-person"></i> <?= htmlspecialchars($_SESSION['frontend_nama']) ?>
+	          </a>
+	          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+	            <li><a class="dropdown-item" href="index.php?page=profil">Profil</a></li>
+	            <li><hr class="dropdown-divider"></li>
+	            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+	          </ul>
+	        </li>
+	        <?php else: ?>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href="index.php?page=login">Login</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href="index.php?page=register">Daftar</a>
+	        </li>
+	        <?php endif; ?>
 	      </ul>
 	    </div>
 	  </div>
@@ -55,7 +103,7 @@
 						<img src="assets/img/logo-sidoarjo.png" class="img-fluid">
 						<h3 class="mt-2">Website Desa Kwangsan</h3>
 						<p>"Menuju Desa Mandiri dan Sejahtera"</p>
-						<br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center>
+						<!-- <br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center> -->
 						
 					</div>
 				</div>
@@ -70,53 +118,56 @@
 
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item"><a href="#">Home</a></li>
-			    <li class="breadcrumb-item active" aria-current="page"><?= $_GET['page'] ?></li>
+			    <li class="breadcrumb-item"><a href="index.php?page=beranda">Home</a></li>
+			    <li class="breadcrumb-item active" aria-current="page"><?= isset($_GET['page']) ? ucfirst($_GET['page']) : 'Beranda' ?></li>
 			  </ol>
 			</nav>
 
 			<div class="row mt-3">
 			<?php 
 
-				if(isset($_GET['page'])) {
-					$page = $_GET['page'];
+				$page = $_GET['page'];
 
-					switch ($page) {
-						case 'beranda':
-							include "halaman/beranda.php";
-							break;
+				switch ($page) {
+					case 'beranda':
+						include "halaman/beranda.php";
+						break;
 
-						case 'berita':
-							include "halaman/berita.php";
-							break;
+					case 'berita':
+						include "halaman/berita.php";
+						break;
 
-						case 'detail':
-							include "halaman/detail-post.php";
-							break;
+					case 'detail':
+						include "halaman/detail-post.php";
+						break;
 
-						// case 'kebijakan':
-						// 	include "kategori/kebijakan.php";
-						// 	break;
+					case 'kategori':
+						include "halaman/kategori.php";
+						break;
 
-						// case 'peraturan':
-						// 	include "kategori/peraturan.php";
-						// 	break;
+					case 'search':
+						include "halaman/search.php";
+						break;
 
-						case 'galeri':
-							include "halaman/galeri.php";
-							break;
+					case 'login':
+						include "halaman/login.php";
+						break;
 
-						// case 'struktur-organisasi':
-						// 	include "kategori/struktur-organisasi.php";
-						// 	break;
+					case 'register':
+						include "halaman/register.php";
+						break;
 
-						default:
-							echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
-							break;
-					}
-				} else {
-					header("location: index.php?page=beranda");
-					include "halaman/beranda.php";
+					case 'profil':
+						include "halaman/profil.php";
+						break;
+
+					case 'galeri':
+						include "halaman/galeri.php";
+						break;
+
+					default:
+						echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
+						break;
 				}
 
 			 ?>

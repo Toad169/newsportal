@@ -1,6 +1,7 @@
 <?php 
 
 	include "config/config.php";
+	// session_start();
 
 	$sql = mysqli_query($con, "SELECT * FROM tbl_gallery");
 
