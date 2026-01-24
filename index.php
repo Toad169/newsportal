@@ -1,5 +1,31 @@
 <?php 
 session_start();
+include "config/config.php";
+
+// Handle login form submission BEFORE any HTML output
+if(isset($_POST['submit']) && isset($_GET['page']) && $_GET['page'] == 'login') {
+	$username = mysqli_real_escape_string($con, $_POST['username']);
+	$password = md5($_POST['password']);
+
+	$sql = mysqli_query($con, "SELECT * FROM tbl_users WHERE username='$username' AND password='$password' AND id_lvuser=2");
+	$cek = mysqli_num_rows($sql);
+
+	if($cek > 0) {
+		$data = mysqli_fetch_array($sql);
+		
+		$_SESSION['frontend_user_id'] = $data['id_user'];
+		$_SESSION['frontend_username'] = $data['username'];
+		$_SESSION['frontend_nama'] = $data['nama_pengguna'];
+		$_SESSION['frontend_email'] = isset($data['email']) ? $data['email'] : '';
+		
+		header("location: index.php?page=beranda");
+		exit;
+	} else {
+		$_SESSION['login_error'] = "Username atau Password salah!";
+		header("location: index.php?page=login");
+		exit;
+	}
+}
 
 // Redirect to beranda if no page parameter is set
 if(!isset($_GET['page'])) {
@@ -12,7 +38,7 @@ if(!isset($_GET['page'])) {
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SI Blogger</title>
+	<title>PPLG News</title>
 
 	<link rel="stylesheet" href="assets/css/bootstrap-grid.css">
 	<link rel="stylesheet" href="assets/css/bootstrap-reboot.css">
@@ -20,6 +46,16 @@ if(!isset($_GET['page'])) {
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" href="assets/css/ionicons.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+
+	<style>
+		ul .dropdown-menu {
+			background-color: #212529;
+		}
+
+		li .dropdown-item:hover {
+			background-color:rgb(25, 28, 31);
+		}
+	</style>
 </head>
 <body>
 	
@@ -27,7 +63,7 @@ if(!isset($_GET['page'])) {
 	  <div class="container-fluid">
 	    <a class="navbar-brand d-flex align-items-center" href="#">
 	    	<img src="assets/img/logo-sidoarjo.png" width="30" height="24">
-	    	&nbsp; <span>SI Blogger</span>
+	    	&nbsp; <span>PPLG News</span>
 	    </a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
@@ -101,8 +137,8 @@ if(!isset($_GET['page'])) {
 				<div class="row">
 					<div class="col-md-12 text-center">
 						<img src="assets/img/logo-sidoarjo.png" class="img-fluid">
-						<h3 class="mt-2">Website Desa Kwangsan</h3>
-						<p>"Menuju Desa Mandiri dan Sejahtera"</p>
+						<h3 class="mt-2">Website PPLG News</h3>
+						<p>"Menuju PPLG dan News"</p>
 						<!-- <br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center> -->
 						
 					</div>
@@ -176,7 +212,7 @@ if(!isset($_GET['page'])) {
 
 	<footer id="footer" class="mt-5 p-3 bg-dark">
 		<div class="container text-center">
-			<p class="text-white">&copy;&nbsp; Copyright By SI Blogger | Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a>
+			<p class="text-white">&copy;&nbsp; Copyright By PPLG News
 			</p>
 		</div>
 	</footer>

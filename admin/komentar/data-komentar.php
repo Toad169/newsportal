@@ -10,6 +10,7 @@
 		<div class="card">
 			<div class="card-header">
 				<h5>Data Komentar</h5>
+				<p class="text-muted mb-0" style="font-size: 12px;">Semua komentar langsung disetujui. Hapus komentar yang melanggar aturan.</p>
 			</div>
 			<div class="card-body">
 				<table class="table table-bordered">
@@ -33,23 +34,18 @@
 						<td>
 							<?php 
 								if($data['status'] == 'approved') {
-									echo '<span class="badge badge-success">Disetujui</span>';
+									echo '<span class="badge badge-success">Aktif</span>';
 								} elseif($data['status'] == 'spam') {
 									echo '<span class="badge badge-danger">Spam</span>';
 								} else {
-									echo '<span class="badge badge-warning">Menunggu</span>';
+									echo '<span class="badge badge-secondary">Tidak Aktif</span>';
 								}
 							?>
 						</td>
 						<td><?= date('d M Y, H:i', strtotime($data['created_at'])) ?></td>
 						<td class="text-center">
-							<?php if($data['status'] == 'pending'): ?>
-								<a href="index.php?page=approve-komentar&id=<?=$data['id_comment'] ?>" class="btn btn-success btn-sm" title="Setujui">
-									<i class="fas fa-check"></i>
-								</a>
-							<?php endif; ?>
-							<a href="index.php?page=hapus-komentar&id=<?=$data['id_comment'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus komentar ini?')" title="Hapus">
-								<i class="fas fa-trash"></i>
+							<a href="index.php?page=hapus-komentar&id=<?=$data['id_comment'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus komentar ini? Komentar yang melanggar aturan akan dihapus.')" title="Hapus Komentar">
+								<i class="fas fa-trash"></i> Hapus
 							</a>
 						</td>
 					</tr>

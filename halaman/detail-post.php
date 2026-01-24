@@ -7,16 +7,23 @@
 
 	// Handle comment submission
 	if(isset($_POST['submit_comment'])) {
+		// Check if user is logged in
+		if(!isset($_SESSION['frontend_user_id'])) {
+			echo "<script>alert('Anda harus login untuk mengirim komentar!')</script>";
+			echo "<script>window.location.href='index.php?page=login'</script>";
+			exit;
+		}
+
 		$id_post = $_POST['id_post'];
-		$nama = $_POST['nama'];
-		$email = $_POST['email'];
-		$komentar = $_POST['komentar'];
-		$status = 'pending'; // Comments need approval by default
+		$nama = $_SESSION['frontend_nama'];
+		$email = isset($_SESSION['frontend_email']) ? $_SESSION['frontend_email'] : '';
+		$komentar = mysqli_real_escape_string($con, $_POST['komentar']);
+		$status = 'approved'; // Comments are instantly approved for logged-in users
 
 		$sql = mysqli_query($con, "INSERT INTO tbl_comments (id_post, nama, email, komentar, status) VALUES ('$id_post', '$nama', '$email', '$komentar', '$status')");
 		
 		if($sql) {
-			echo "<script>alert('Komentar berhasil dikirim! Menunggu persetujuan admin.')</script>";
+			echo "<script>alert('Komentar berhasil dikirim!')</script>";
 			echo "<script>window.location.href='index.php?page=detail&id=$id_post'</script>";
 		} else {
 			echo "<script>alert('Gagal mengirim komentar!')</script>";
@@ -62,47 +69,50 @@
 			?>
 			<div class="card mb-3">
 				<div class="card-body">
-					<h6 class="card-title"><?= htmlspecialchars($comment['nama']) ?></h6>
-					<p class="text-muted" style="font-size: 12px;">
-						<i class="ion-email"></i> <?= htmlspecialchars($comment['email']) ?> &nbsp;&nbsp;
-						<i class="ion-calendar"></i> <?= date('d M Y, H:i', strtotime($comment['created_at'])) ?>
-					</p>
-					<p class="card-text"><?= nl2br(htmlspecialchars($comment['komentar'])) ?></p>
+					<div class="d-flex justify-content-between align-items-start">
+						<div>
+							<h6 class="card-title mb-1"><?= htmlspecialchars($comment['nama']) ?></h6>
+							<p class="text-muted mb-2" style="font-size: 12px;">
+								<i class="ion-calendar"></i> <?= date('d M Y, H:i', strtotime($comment['created_at'])) ?>
+							</p>
+						</div>
+					</div>
+					<p class="card-text mt-2"><?= nl2br(htmlspecialchars($comment['komentar'])) ?></p>
 				</div>
 			</div>
 			<?php 
 					endwhile;
 				else:
 			?>
-			<p class="text-muted">Belum ada komentar. Jadilah yang pertama berkomentar!</p>
+			<p class="text-muted">Belum ada komentar. <?= isset($_SESSION['frontend_user_id']) ? 'Jadilah yang pertama berkomentar!' : 'Login untuk berkomentar!' ?></p>
 			<?php endif; ?>
 		</div>
 		
 		<!-- Comment Form -->
 		<div class="mt-4">
 			<h5>Tinggalkan Komentar</h5>
-			<form method="POST">
-				<input type="hidden" name="id_post" value="<?= $id ?>">
-				<div class="row mt-3">
-					<div class="col-md-6">
-						<div class="mb-3">
-							<label for="nama" class="form-label">Nama</label>
-							<input type="text" class="form-control" name="nama" id="nama" required>
-						</div>
+			<?php if(isset($_SESSION['frontend_user_id'])): ?>
+				<form method="POST">
+					<input type="hidden" name="id_post" value="<?= $id ?>">
+					<div class="mb-3">
+						<label class="form-label">Anda login sebagai: <strong><?= htmlspecialchars($_SESSION['frontend_nama']) ?></strong></label>
 					</div>
-					<div class="col-md-6">
-						<div class="mb-3">
-							<label for="email" class="form-label">Email</label>
-							<input type="email" class="form-control" name="email" id="email" required>
-						</div>
+					<div class="mb-3">
+						<label for="komentar" class="form-label">Komentar</label>
+						<textarea class="form-control" name="komentar" id="komentar" rows="5" required placeholder="Tulis komentar Anda di sini..."></textarea>
 					</div>
+					<button type="submit" name="submit_comment" class="btn btn-primary">Kirim Komentar</button>
+				</form>
+			<?php else: ?>
+				<div class="alert alert-info">
+					<p class="mb-2"><strong>Anda harus login untuk mengirim komentar.</strong></p>
+					<p class="mb-0">
+						<a href="index.php?page=login" class="btn btn-primary btn-sm">Login</a>
+						atau
+						<a href="index.php?page=register" class="btn btn-success btn-sm">Daftar</a>
+					</p>
 				</div>
-				<div class="mb-3">
-					<label for="komentar" class="form-label">Komentar</label>
-					<textarea class="form-control" name="komentar" id="komentar" rows="5" required></textarea>
-				</div>
-				<button type="submit" name="submit_comment" class="btn btn-primary">Kirim Komentar</button>
-			</form>
+			<?php endif; ?>
 		</div>
 	</div>
  </div>
