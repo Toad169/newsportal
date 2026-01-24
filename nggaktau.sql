@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2026 at 01:55 AM
+-- Generation Time: Jan 24, 2026 at 04:38 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,6 +35,13 @@ CREATE TABLE `tbl_categories` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_categories`
+--
+
+INSERT INTO `tbl_categories` (`id_kategori`, `nama_kategori`, `slug`, `deskripsi`, `created_at`) VALUES
+(4, 'Nggih mas', 'okebos', 'adsdaadsdas', '2026-01-24 02:51:40');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +57,14 @@ CREATE TABLE `tbl_comments` (
   `status` enum('pending','approved','spam') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tbl_comments`
+--
+
+INSERT INTO `tbl_comments` (`id_comment`, `id_post`, `nama`, `email`, `komentar`, `status`, `created_at`) VALUES
+(6, 23, 'akucok', '', 'kontol', 'approved', '2026-01-24 02:58:15'),
+(7, 23, 'akucok', '', 'penis', 'approved', '2026-01-24 03:36:05');
 
 -- --------------------------------------------------------
 
@@ -98,6 +113,13 @@ CREATE TABLE `tbl_posts` (
   `author` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tbl_posts`
+--
+
+INSERT INTO `tbl_posts` (`id_post`, `img`, `judul`, `artikel`, `date`, `kategori`, `id_kategori`, `author`) VALUES
+(23, '616625004_122158907978896018_2247282663556156644_n.jpg', 'MANUKJARAN', 'LOREM IPSUM DOLOR SIT AMET', '2026-01-24', 'okebos', 4, 'Muhamad Shandy Rafliza Akbar');
+
 -- --------------------------------------------------------
 
 --
@@ -118,7 +140,9 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id_user`, `username`, `password`, `nama_pengguna`, `img`, `id_lvuser`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Dodit Mulyantoro', 'avatar5.png', 1);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Dodit Mulyantoro', 'avatar5.png', 1),
+(34, 'shandy', '92ae645d4f8da8cf9eea36d52b4b4d1e', 'Muhamad Shandy Rafliza Akbar', 'image.png', 1),
+(35, 'akucok', '92ae645d4f8da8cf9eea36d52b4b4d1e', 'akucok', 'avatar2.png', 2);
 
 --
 -- Indexes for dumped tables
@@ -172,13 +196,13 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_categories`
 --
 ALTER TABLE `tbl_categories`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_comments`
 --
 ALTER TABLE `tbl_comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_gallery`
@@ -196,13 +220,13 @@ ALTER TABLE `tbl_lvuser`
 -- AUTO_INCREMENT for table `tbl_posts`
 --
 ALTER TABLE `tbl_posts`
-  MODIFY `id_post` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_post` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_user` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables

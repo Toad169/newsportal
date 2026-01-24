@@ -1,46 +1,52 @@
 <?php
-
 include 'config/config.php';
-// session_start();
-
-$query = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date desc');
+$query = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date DESC');
 ?>
 
-
-<?php foreach ($query as $data): ?>
-	<div class="col-md-4 col-xs-12 mt-3">
-		<h3 class="text-primary" style="height: 100px;"><?= $data['judul'] ?></h3>
-		<img src="assets/file/post/<?= $data['img'] ?>" alt="" class="img-thumbnail">
-		<div>
-			<i class="ion-calendar">&nbsp; <?= $data['date'] ?> &nbsp; / &nbsp;</i>
-			<i class="ion-person">&nbsp; <?= $data['author'] ?></i>
-		</div>
-		<p class="article-text">
-			<?= substr($data['artikel'], 0, 100) ?>
-		</p>
-		<a href="index.php?page=detail&id=<?= $data[
-    'id_post'
-  ] ?>" class="btn btn-primary">Baca Selengkapnya</a>
-	</div>
-<?php endforeach; ?>
-
-<!-- Pagination -->
-		<!-- <div class="d-flex justify-content-center">
-			<nav aria-label="..." class="mt-5">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-			    </li>
-			    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item" aria-current="page">
-			      <a class="page-link" href="#">2</a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#">Next</a>
-			    </li>
-			  </ul>
-			</nav>
-		</div> -->
-	</div>
+<div class="col-12 mb-4">
+	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #dc2626 !important; display: inline-block; color: #dc2626;">
+		<i class="fas fa-newspaper me-2"></i> Berita Terbaru
+	</h4>
 </div>
+
+<?php if (mysqli_num_rows($query) > 0): ?>
+	<?php foreach ($query as $data): ?>
+		<div class="col-md-4 col-sm-6 mb-4">
+			<div class="card h-100">
+				<div class="position-relative">
+					<img src="assets/file/post/<?= $data['img'] ?>" alt="<?= htmlspecialchars($data['judul']) ?>" class="card-img-top" style="height: 220px; object-fit: cover;">
+					<div class="card-img-overlay p-0">
+						<span class="badge position-absolute top-0 end-0 m-3 shadow-sm text-white" style="background-color: #dc2626;">
+							<?= isset($data['kategori']) ? $data['kategori'] : 'Berita' ?>
+						</span>
+					</div>
+				</div>
+				<div class="card-body d-flex flex-column">
+					<div class="mb-2 text-muted small">
+						<i class="far fa-calendar-alt me-1"></i> <?= date('d M Y', strtotime($data['date'])) ?>
+						<span class="mx-1">•</span>
+						<i class="far fa-user me-1"></i> <?= htmlspecialchars($data['author']) ?>
+					</div>
+					<h5 class="card-title">
+						<a href="index.php?page=detail&id=<?= $data['id_post'] ?>" class="text-decoration-none text-dark stretched-link">
+							<?= htmlspecialchars($data['judul']) ?>
+						</a>
+					</h5>
+					<p class="card-text text-muted mb-4 flex-grow-1">
+						<?= htmlspecialchars(substr(strip_tags($data['artikel']), 0, 100)) ?>...
+					</p>
+					<div class="mt-auto">
+						<a href="index.php?page=detail&id=<?= $data['id_post'] ?>" class="btn btn-outline-primary btn-sm w-100">
+							Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endforeach; ?>
+<?php else: ?>
+	<div class="col-12 text-center py-5">
+		<i class="far fa-folder-open fa-3x text-muted mb-3"></i>
+		<p class="text-muted">Belum ada berita yang diposting.</p>
+	</div>
+<?php endif; ?>

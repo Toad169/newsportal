@@ -1,67 +1,65 @@
 <?php
-
 include 'config/config.php';
-// session_start();
 
 $kategori_id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$kategori_nama = 'Semua Kategori';
 
 if ($kategori_id > 0) {
-  // Get category info
   $kat_info = mysqli_query($con, "SELECT * FROM tbl_categories WHERE id_kategori='$kategori_id'");
   $kat_data = mysqli_fetch_array($kat_info);
 
   if ($kat_data) {
     $kategori_nama = $kat_data['nama_kategori'];
-    $query = mysqli_query(
-      $con,
-      "SELECT * FROM tbl_posts WHERE id_kategori='$kategori_id' ORDER BY date DESC",
-    );
+    $query = mysqli_query($con, "SELECT * FROM tbl_posts WHERE id_kategori='$kategori_id' ORDER BY date DESC");
   } else {
     $kategori_nama = 'Kategori Tidak Ditemukan';
     $query = null;
   }
 } else {
-  $kategori_nama = 'Semua Kategori';
   $query = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date DESC');
 }
 ?>
 
-<div class="col-lg-12">
-	<h3>Kategori: <?= htmlspecialchars($kategori_nama) ?></h3>
-	<hr>
+<div class="col-12 mb-4">
+	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #dc2626 !important; display: inline-block; color: #dc2626;">
+		<i class="fas fa-tag me-2"></i> Kategori: <?= htmlspecialchars($kategori_nama) ?>
+	</h4>
+</div>
 
-	<?php if ($query && mysqli_num_rows($query) > 0): ?>
-		<div class="row">
-			<?php foreach ($query as $data): ?>
-				<div class="col-md-4 col-xs-12 mt-3">
-					<div class="card h-100">
-						<img src="assets/file/post/<?= $data['img'] ?>" class="card-img-top" alt="<?= htmlspecialchars(
-  $data['judul'],
-) ?>" style="height: 200px; object-fit: cover;">
-						<div class="card-body">
-							<h5 class="card-title" style="height: 60px; overflow: hidden;">
-								<a href="index.php?page=detail&id=<?= $data['id_post'] ?>" class="text-decoration-none">
-									<?= htmlspecialchars($data['judul']) ?>
-								</a>
-							</h5>
-							<p class="card-text">
-								<small class="text-muted">
-									<i class="ion-calendar"></i> <?= $data['date'] ?> &nbsp;&nbsp;
-									<i class="ion-person"></i> <?= htmlspecialchars($data['author']) ?>
-								</small>
-							</p>
-							<p class="card-text"><?= substr(htmlspecialchars($data['artikel']), 0, 100) ?>...</p>
-							<a href="index.php?page=detail&id=<?= $data[
-         'id_post'
-       ] ?>" class="btn btn-primary btn-sm">Baca Selengkapnya</a>
-						</div>
+<?php if ($query && mysqli_num_rows($query) > 0): ?>
+	<?php foreach ($query as $data): ?>
+		<div class="col-md-4 col-sm-6 mb-4">
+			<div class="card h-100">
+				<div class="position-relative">
+					<img src="assets/file/post/<?= $data['img'] ?>" alt="<?= htmlspecialchars($data['judul']) ?>" class="card-img-top" style="height: 220px; object-fit: cover;">
+				</div>
+				<div class="card-body d-flex flex-column">
+					<div class="mb-2 text-muted small">
+						<i class="far fa-calendar-alt me-1"></i> <?= date('d M Y', strtotime($data['date'])) ?>
+						<span class="mx-1">•</span>
+						<i class="far fa-user me-1"></i> <?= htmlspecialchars($data['author']) ?>
+					</div>
+					<h5 class="card-title">
+						<a href="index.php?page=detail&id=<?= $data['id_post'] ?>" class="text-decoration-none text-dark stretched-link">
+							<?= htmlspecialchars($data['judul']) ?>
+						</a>
+					</h5>
+					<p class="card-text text-muted mb-4 flex-grow-1">
+						<?= htmlspecialchars(substr(strip_tags($data['artikel']), 0, 100)) ?>...
+					</p>
+					<div class="mt-auto">
+						<a href="index.php?page=detail&id=<?= $data['id_post'] ?>" class="btn btn-outline-primary btn-sm w-100">
+							Baca Selengkapnya <i class="fas fa-arrow-right ms-1"></i>
+						</a>
 					</div>
 				</div>
-			<?php endforeach; ?>
+			</div>
 		</div>
-	<?php else: ?>
-		<div class="alert alert-info">
-			<p class="mb-0">Belum ada postingan dalam kategori ini.</p>
-		</div>
-	<?php endif; ?>
-</div>
+	<?php endforeach; ?>
+<?php else: ?>
+	<div class="col-12 text-center py-5">
+		<i class="far fa-folder-open fa-3x text-muted mb-3"></i>
+		<p class="text-muted">Belum ada postingan dalam kategori ini.</p>
+		<a href="index.php?page=beranda" class="btn btn-primary mt-2">Kembali ke Beranda</a>
+	</div>
+<?php endif; ?>

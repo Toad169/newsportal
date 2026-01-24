@@ -16,6 +16,219 @@
     .table tr td {
       width: 20px;
     }
+
+    /* Modern Minimalistic School Theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f7fa;
+    }
+
+    /* Navbar Modernization */
+    .main-header {
+      background: #ffffff !important;
+      border-bottom: 1px solid #e8eaf0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+      padding: 0.5rem 1rem;
+    }
+
+    .main-header .navbar-nav .nav-link {
+      color: #4b5563 !important;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .main-header .navbar-nav .nav-link:hover {
+      background: #f3f4f6;
+      color: #1e3a8a !important;
+    }
+
+    .main-header .navbar-nav .nav-link i {
+      margin-right: 6px;
+    }
+
+    /* Sidebar Modernization */
+    .main-sidebar {
+      background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%) !important;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .brand-link {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      padding: 1.25rem 1rem !important;
+    }
+
+    .brand-text {
+      font-weight: 600 !important;
+      font-size: 1.1rem;
+      color: #ffffff !important;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-image {
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .user-panel {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 1rem !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .user-panel .info a {
+      color: #ffffff !important;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .user-panel .image img {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    /* Sidebar Navigation */
+    .nav-sidebar > .nav-item > .nav-link {
+      color: rgba(255, 255, 255, 0.85) !important;
+      border-radius: 8px;
+      margin: 2px 8px;
+      padding: 0.75rem 1rem !important;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .nav-sidebar > .nav-item > .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    .nav-sidebar > .nav-item > .nav-link.active {
+      background: rgba(255, 255, 255, 0.15) !important;
+      color: #ffffff !important;
+      font-weight: 600;
+    }
+
+    .nav-sidebar .nav-icon {
+      width: 20px;
+      margin-right: 10px;
+      text-align: center;
+    }
+
+    .nav-treeview {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin: 4px 8px;
+      padding: 4px 0;
+    }
+
+    .nav-treeview .nav-link {
+      color: rgba(255, 255, 255, 0.75) !important;
+      padding: 0.5rem 1rem 0.5rem 2.5rem !important;
+      font-size: 0.9rem;
+    }
+
+    .nav-treeview .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    /* Content Wrapper */
+    .content-wrapper {
+      background: #f5f7fa;
+    }
+
+    .content-header {
+      background: transparent;
+      padding: 1.5rem 0 1rem 0;
+    }
+
+    .content-header h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .breadcrumb {
+      background: transparent;
+      padding: 0;
+      margin: 0;
+    }
+
+    .breadcrumb-item a {
+      color: #6b7280;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .breadcrumb-item.active {
+      color: #1f2937;
+      font-weight: 600;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+      content: "/";
+      color: #d1d5db;
+      padding: 0 0.5rem;
+    }
+
+    /* Cards */
+    .card {
+      border: 1px solid #e8eaf0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+      background: #f9fafb;
+      border-bottom: 1px solid #e8eaf0;
+      padding: 1rem 1.5rem;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      border-radius: 8px;
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      border-color: #3b82f6;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Tables */
+    .table {
+      font-size: 0.9rem;
+    }
+
+    .table thead th {
+      border-bottom: 2px solid #e8eaf0;
+      font-weight: 600;
+      color: #6b7280;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    .table tbody tr:hover {
+      background: #f9fafb;
+    }
   </style>
 </head>
 
@@ -32,9 +245,10 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
       <li class="nav-item">
-        <a href="logout.php" class="nav-link text-primary"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a>
+        <a href="logout.php" class="nav-link">
+          <i class="fas fa-sign-out-alt"></i> Log Out
+        </a>
       </li>
     </ul>
   </nav>
@@ -43,8 +257,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="../assets/img/be/img/logo.png" alt="PPLG Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="index.php" class="brand-link">
+      <img src="../assets/img/be/img/logo.png" alt="PPLG Logo" class="brand-image img-circle elevation-3" style="opacity: .9">
       <span class="brand-text font-weight-light">PPLG News</span>
     </a>
 
@@ -263,7 +477,11 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-              <li class="breadcrumb-item active"><?= $_GET['page'] ?></li>
+              <?php if (!empty($_GET['page'])): ?>
+                <li class="breadcrumb-item active">
+                  <?= htmlspecialchars($_GET['page']) ?>
+                </li>
+              <?php endif; ?>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
