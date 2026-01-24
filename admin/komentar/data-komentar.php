@@ -1,10 +1,11 @@
-<?php 
+<?php
 
-	$sql = mysqli_query($con, "SELECT c.*, p.judul FROM tbl_comments c 
+$sql = mysqli_query(
+  $con,
+  "SELECT c.*, p.judul FROM tbl_comments c 
 		LEFT JOIN tbl_posts p ON c.id_post = p.id_post 
-		ORDER BY c.created_at DESC");
-
- ?>
+		ORDER BY c.created_at DESC",
+); ?>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card">
@@ -24,32 +25,35 @@
 						<th>Tanggal</th>
 						<th>Aksi</th>
 					</tr>
-				<?php $no = 1; foreach($sql as $data): ?>
+				<?php
+    $no = 1;
+    foreach ($sql as $data): ?>
 					<tr>
-						<td><?= $no++; ?></td>
+						<td><?= $no++ ?></td>
 						<td><?= htmlspecialchars($data['nama']) ?></td>
 						<td><?= htmlspecialchars($data['email']) ?></td>
-						<td><?= substr(htmlspecialchars($data['komentar']), 0, 50) ?><?= strlen($data['komentar']) > 50 ? '...' : '' ?></td>
+						<td><?=substr(htmlspecialchars($data['komentar']), 0, 50); strlen($data['komentar']) > 50 ? '...' : ''?></td>
 						<td><?= htmlspecialchars($data['judul']) ?></td>
 						<td>
-							<?php 
-								if($data['status'] == 'approved') {
-									echo '<span class="badge badge-success">Aktif</span>';
-								} elseif($data['status'] == 'spam') {
-									echo '<span class="badge badge-danger">Spam</span>';
-								} else {
-									echo '<span class="badge badge-secondary">Tidak Aktif</span>';
-								}
-							?>
+							<?php if ($data['status'] == 'approved') {
+         echo '<span class="badge badge-success">Aktif</span>';
+       } elseif ($data['status'] == 'spam') {
+         echo '<span class="badge badge-danger">Spam</span>';
+       } else {
+         echo '<span class="badge badge-secondary">Tidak Aktif</span>';
+       } ?>
 						</td>
 						<td><?= date('d M Y, H:i', strtotime($data['created_at'])) ?></td>
 						<td class="text-center">
-							<a href="index.php?page=hapus-komentar&id=<?=$data['id_comment'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus komentar ini? Komentar yang melanggar aturan akan dihapus.')" title="Hapus Komentar">
+							<a href="index.php?page=hapus-komentar&id=<?= $data[
+         'id_comment'
+       ] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus komentar ini? Komentar yang melanggar aturan akan dihapus.')" title="Hapus Komentar">
 								<i class="fas fa-trash"></i> Hapus
 							</a>
 						</td>
 					</tr>
-				<?php endforeach; ?>
+				<?php endforeach;
+    ?>
 				</table>
 			</div>
 		</div>

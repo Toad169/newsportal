@@ -30,34 +30,35 @@
 	</div>
 </div>
 
-<?php 
+<?php if (isset($_POST['submit'])) {
+  $nama_kategori = $_POST['nama_kategori'];
+  $slug = $_POST['slug'];
+  $deskripsi = $_POST['deskripsi'];
 
-	if(isset($_POST['submit'])) {
-		$nama_kategori = $_POST['nama_kategori'];
-		$slug = $_POST['slug'];
-		$deskripsi = $_POST['deskripsi'];
+  // Generate slug from nama_kategori if slug is empty
+  if (empty($slug)) {
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nama_kategori)));
+  } else {
+    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $slug)));
+  }
 
-		// Generate slug from nama_kategori if slug is empty
-		if(empty($slug)) {
-			$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $nama_kategori)));
-		} else {
-			$slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $slug)));
-		}
+  // Check if slug already exists
+  $check_slug = mysqli_query($con, "SELECT * FROM tbl_categories WHERE slug='$slug'");
+  if (mysqli_num_rows($check_slug) > 0) {
+    $slug = $slug . '-' . time();
+  }
 
-		// Check if slug already exists
-		$check_slug = mysqli_query($con, "SELECT * FROM tbl_categories WHERE slug='$slug'");
-		if(mysqli_num_rows($check_slug) > 0) {
-			$slug = $slug . '-' . time();
-		}
+  $sql = mysqli_query(
+    $con,
+    "INSERT INTO tbl_categories (nama_kategori, slug, deskripsi) VALUES ('$nama_kategori', '$slug', '$deskripsi')",
+  );
 
-		$sql = mysqli_query($con, "INSERT INTO tbl_categories (nama_kategori, slug, deskripsi) VALUES ('$nama_kategori', '$slug', '$deskripsi')");
-		
-		if($sql) {
-			echo "<script>alert('Kategori Berhasil Ditambahkan!')</script>";
-			echo "<script>window.location.href='index.php?page=data-kategori'</script>";
-		} else {
-			echo "<script>alert('Gagal menambahkan kategori!')</script>";
-		}
-	}
+  if ($sql) {
+    echo "<script>alert('Kategori Berhasil Ditambahkan!')</script>";
+    echo "<script>window.location.href='index.php?page=data-kategori'</script>";
+  } else {
+    echo "<script>alert('Gagal menambahkan kategori!')</script>";
+  }
+}
 
- ?>
+?>

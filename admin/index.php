@@ -1,125 +1,118 @@
-<?php 
-  ob_start();
-  session_start();
+<?php
+ob_start();
+session_start();
 
-  include "../config/config.php";
+include '../config/config.php';
 
-  if(!$_SESSION['user']) {
-    header("location: login.php");
-  }
+if (!$_SESSION['user']) {
+  header('location: login.php');
+}
 
-
-  require_once "template/header.php";
-
+require_once 'template/header.php';
 ?>
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
         
-        <?php 
+        <?php if (isset($_GET['page'])) {
+          $page = $_GET['page'];
 
-          if(isset($_GET['page'])) {
-            $page = $_GET['page'];
+          switch ($page) {
+            case 'home':
+              include 'dashboard/index.php';
+              break;
 
-            switch ($page) {
-              case 'home':
-                include "dashboard/index.php";
-                break;
+            case 'tampil-beranda':
+              include 'beranda/data-beranda.php';
+              break;
 
-              case 'tampil-beranda':
-                include "beranda/data-beranda.php";
-                break;
+            case 'tambah-beranda':
+              include 'beranda/tambah-beranda.php';
+              break;
 
-              case 'tambah-beranda':
-                include "beranda/tambah-beranda.php";
-                break;
+            case 'hapus-beranda':
+              include 'beranda/hapus-beranda.php';
+              break;
 
-              case 'hapus-beranda':
-                include "beranda/hapus-beranda.php";
-                break;
+            case 'edit-beranda':
+              include 'beranda/edit-beranda.php';
+              break;
 
-              case 'edit-beranda':
-                include "beranda/edit-beranda.php";
-                break;
+            case 'tampil-berita':
+              include 'berita/data-berita.php';
+              break;
 
-              case 'tampil-berita':
-                include "berita/data-berita.php";
-                break;
+            case 'tambah-berita':
+              include 'berita/tambah-berita.php';
+              break;
 
-              case 'tambah-berita':
-                include "berita/tambah-berita.php";
-                break;
+            case 'hapus-berita':
+              include 'berita/hapus-berita.php';
+              break;
 
-              case 'hapus-berita':
-                include "berita/hapus-berita.php";
-                break;
+            case 'edit-berita':
+              include 'berita/edit-berita.php';
+              break;
 
-              case 'edit-berita':
-                include "berita/edit-berita.php";
-                break;
+            // case 'kebijakan':
+            //   include "kebijakan/index.php";
+            //   break;
 
-              // case 'kebijakan':
-              //   include "kebijakan/index.php";
-              //   break;
+            // case 'peraturan':
+            //   include "peraturan/index.php";
+            //   break;
 
-              // case 'peraturan':
-              //   include "peraturan/index.php";
-              //   break;
+            case 'galeri':
+              include 'galeri/index.php';
+              break;
 
-              case 'galeri':
-                include "galeri/index.php";
-                break;
+            case 'hapus-galeri':
+              include 'galeri/hapus-galeri.php';
+              break;
 
-              case 'hapus-galeri':
-                include "galeri/hapus-galeri.php";
-                break;
+            // case 'struktur-organisasi':
+            //   include "struktur/index.php";
+            //   break;
 
-              // case 'struktur-organisasi':
-              //   include "struktur/index.php";
-              //   break;
+            case 'user':
+              include 'akun/index.php';
+              break;
 
-              case 'user':
-                include "akun/index.php";
-                break;
+            case 'data-kategori':
+              include 'kategori/data-kategori.php';
+              break;
 
-              case 'data-kategori':
-                include "kategori/data-kategori.php";
-                break;
+            case 'tambah-kategori':
+              include 'kategori/tambah-kategori.php';
+              break;
 
-              case 'tambah-kategori':
-                include "kategori/tambah-kategori.php";
-                break;
+            case 'edit-kategori':
+              include 'kategori/edit-kategori.php';
+              break;
 
-              case 'edit-kategori':
-                include "kategori/edit-kategori.php";
-                break;
+            case 'hapus-kategori':
+              include 'kategori/hapus-kategori.php';
+              break;
 
-              case 'hapus-kategori':
-                include "kategori/hapus-kategori.php";
-                break;
+            case 'data-komentar':
+              include 'komentar/data-komentar.php';
+              break;
 
-              case 'data-komentar':
-                include "komentar/data-komentar.php";
-                break;
+            case 'hapus-komentar':
+              include 'komentar/hapus-komentar.php';
+              break;
 
-              case 'hapus-komentar':
-                include "komentar/hapus-komentar.php";
-                break;
+            case 'approve-komentar':
+              include 'komentar/approve-komentar.php';
+              break;
 
-              case 'approve-komentar':
-                include "komentar/approve-komentar.php";
-                break;
-
-
-              default:
-                echo "<center><h3>Maaf. Halaman tidak di temukan !</h3></center>";
-                break;
-            }
-          } else {
-            include "dashboard/index.php";
+            default:
+              echo '<center><h3>Maaf. Halaman tidak di temukan !</h3></center>';
+              break;
           }
-
-         ?>
+        } else {
+          include 'dashboard/index.php';
+        } ?>
 
       </div>
       <!-- /. New Row -->
@@ -135,8 +128,6 @@
   </aside>
   <!-- /.control-sidebar -->
 
-<?php 
-
-  require_once "template/footer.php";
+<?php require_once 'template/footer.php';
 
 ?>

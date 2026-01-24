@@ -1,37 +1,36 @@
-<?php 
+<?php
 
-  include "../config/config.php";
+include '../config/config.php';
 
-   if(isset($_POST['submit'])) {
-    $user = $_POST['user'];
-    $pass = md5($_POST['pass']);
+if (isset($_POST['submit'])) {
+  $user = $_POST['user'];
+  $pass = md5($_POST['pass']);
 
-    $sql = mysqli_query($con, "SELECT * FROM tbl_users WHERE username='$user' AND password='$pass'");
+  $sql = mysqli_query($con, "SELECT * FROM tbl_users WHERE username='$user' AND password='$pass'");
 
-    // Ambil Data Lv User
-    $data = mysqli_fetch_array($sql);
-    
-    // Ambil Data True or False
-    $cek = mysqli_num_rows($sql);
+  // Ambil Data Lv User
+  $data = mysqli_fetch_array($sql);
 
-    // var_dump($cek);
+  // Ambil Data True or False
+  $cek = mysqli_num_rows($sql);
 
-    if($cek > 0) {
-      session_start();
+  // var_dump($cek);
 
-      // Passing Data
-      $_SESSION['id'] = $data['id_user'];
-      $_SESSION['user'] = $data['username'];
-      $_SESSION['pengguna'] = $data['nama_pengguna'];
-      $_SESSION['lvluser'] = $data['id_lvuser'];
-      
-      header("location:index.php?page=home");
-    } else {
-      echo "<script>alert('Maaf Username atau Password Salah')</script>";
-    }
+  if ($cek > 0) {
+    session_start();
+
+    // Passing Data
+    $_SESSION['id'] = $data['id_user'];
+    $_SESSION['user'] = $data['username'];
+    $_SESSION['pengguna'] = $data['nama_pengguna'];
+    $_SESSION['lvluser'] = $data['id_lvuser'];
+
+    header('location:index.php?page=home');
+  } else {
+    echo "<script>alert('Maaf Username atau Password Salah')</script>";
   }
-
- ?>
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">

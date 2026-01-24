@@ -1,11 +1,11 @@
-  <footer class="main-footer">
+  <!-- <footer class="main-footer">
     <strong>Copyright &copy; 2021 <a href="#">PI</a>.</strong>
     All rights reserved. | Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a>
     
     <div class="float-right d-none d-sm-inline-block">
       <b>Tugas</b> PI
     </div>
-  </footer>
+  </footer> -->
 </div>
 <!-- ./wrapper -->
 

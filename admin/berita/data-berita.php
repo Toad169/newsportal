@@ -1,10 +1,12 @@
-<?php 
+<?php
 
-	$author = $_SESSION['pengguna'];
+$author = $_SESSION['pengguna'];
 
-	$sql = mysqli_query($con, "SELECT * FROM tbl_posts WHERE kategori='berita' AND author='$author' ORDER BY date DESC");
-
- ?>
+$sql = mysqli_query(
+  $con,
+  "SELECT * FROM tbl_posts WHERE kategori='berita' AND author='$author' ORDER BY date DESC",
+);
+?>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card">
@@ -23,9 +25,11 @@
 						<th>Author</th>
 						<th>Aksi</th>
 					</tr>
-				<?php $no = 1; foreach($sql as $data): ?>
+				<?php
+    $no = 1;
+    foreach ($sql as $data): ?>
 					<tr>
-						<td><?= $no++; ?></td>
+						<td><?= $no++ ?></td>
 						<td><?= $data['judul'] ?></td>
 						<td><?= substr($data['artikel'], 0, 100) ?></td>
 <!-- 						<td class="text-center">
@@ -33,26 +37,32 @@
 						</td> -->
 						<td><?= $data['date'] ?></td>
 						<td>
-							<?php 
-								$kat_query = mysqli_query($con, "SELECT nama_kategori FROM tbl_categories WHERE id_kategori='".$data['id_kategori']."'");
-								if($kat_data = mysqli_fetch_array($kat_query)) {
-									echo $kat_data['nama_kategori'];
-								} else {
-									echo $data['kategori'];
-								}
-							?>
+							<?php
+       $kat_query = mysqli_query(
+         $con,
+         "SELECT nama_kategori FROM tbl_categories WHERE id_kategori='" .
+           $data['id_kategori'] .
+           "'",
+       );
+       if ($kat_data = mysqli_fetch_array($kat_query)) {
+         echo $kat_data['nama_kategori'];
+       } else {
+         echo $data['kategori'];
+       }
+       ?>
 						</td>
 						<td><?= $data['author'] ?></td>
 						<td class="text-center">
-							<a href="index.php?page=hapus-berita&id=<?=$data['id_post'] ?>" class="btn btn-danger">
+							<a href="index.php?page=hapus-berita&id=<?= $data['id_post'] ?>" class="btn btn-danger">
 								<i class="fas fa-trash"></i>
 							</a>
-							<a href="index.php?page=edit-berita&id=<?=$data['id_post'] ?>" class="btn btn-warning text-white">
+							<a href="index.php?page=edit-berita&id=<?= $data['id_post'] ?>" class="btn btn-warning text-white">
 								<i class="fas fa-edit"></i>
 							</a>
 						</td>
 					</tr>
-				<?php endforeach; ?>
+				<?php endforeach;
+    ?>
 				</table>
 			</div>
 		</div>

@@ -1,14 +1,14 @@
-<?php 
+<?php
 
-	include "../config/config.php";
-	
-	$id = $_GET['id'];
+include '../config/config.php';
 
-	$sql = mysqli_query($con, "DELETE FROM tbl_posts WHERE id_post='$id'");
+$id = $_GET['id'];
 
-	if($sql) {
-		echo "<script>alert('Berhasil Menghapus')</script>";
-		echo "<script>window.location.href='index.php?page=tampil-beranda'</script>";
-	}
+$sql = mysqli_query($con, "DELETE FROM tbl_posts WHERE id_post='$id'");
 
- ?>
+if ($sql) {
+  echo "<script>alert('Berhasil Menghapus')</script>";
+  echo "<script>window.location.href='index.php?page=tampil-beranda'</script>";
+}
+
+?>

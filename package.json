@@ -1,0 +1,25 @@
+{
+  "name": "berita",
+  "version": "1.0.0",
+  "description": "ini tugas ukk gw ama temen gw",
+  "homepage": "https://github.com/Toad169/newsportal#readme",
+  "bugs": {
+    "url": "https://github.com/Toad169/newsportal/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Toad169/newsportal.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"**/*.{php,js,css,html,json,md}\""
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.24.0",
+    "prettier": "^3.8.1"
+  }
+}

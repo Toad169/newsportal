@@ -1,13 +1,12 @@
-<?php 
+<?php
 
-	include "config/config.php";
-	// session_start();
+include 'config/config.php';
+// session_start();
 
-	$query = mysqli_query($con, "SELECT * FROM tbl_posts WHERE kategori='berita' ORDER BY date DESC");
+$query = mysqli_query($con, "SELECT * FROM tbl_posts WHERE kategori='berita' ORDER BY date DESC");
+?>
 
- ?>
-
-<?php foreach($query as $data): ?>
+<?php foreach ($query as $data): ?>
 	<div class="col-md-4 col-xs-12 mt-3">
 		<h3 class="text-primary" style="height: 100px;"><?= $data['judul'] ?></h3>
 		<img src="assets/file/post/<?= $data['img'] ?>" alt="" class="img-thumbnail">

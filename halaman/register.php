@@ -1,47 +1,49 @@
-<?php 
+<?php
 
-	include "config/config.php";
-	// session_start();
+include 'config/config.php';
+// session_start();
 
-	// Redirect if already logged in
-	if(isset($_SESSION['frontend_user_id'])) {
-		header("location: index.php?page=beranda");
-		exit;
-	}
+// Redirect if already logged in
+if (isset($_SESSION['frontend_user_id'])) {
+  header('location: index.php?page=beranda');
+  exit();
+}
 
-	if(isset($_POST['submit'])) {
-		$username = mysqli_real_escape_string($con, $_POST['username']);
-		$password = md5($_POST['password']);
-		$nama_pengguna = mysqli_real_escape_string($con, $_POST['nama_pengguna']);
-		$email = mysqli_real_escape_string($con, $_POST['email']);
+if (isset($_POST['submit'])) {
+  $username = mysqli_real_escape_string($con, $_POST['username']);
+  $password = md5($_POST['password']);
+  $nama_pengguna = mysqli_real_escape_string($con, $_POST['nama_pengguna']);
+  $email = mysqli_real_escape_string($con, $_POST['email']);
 
-		// Check if username already exists
-		$check_user = mysqli_query($con, "SELECT * FROM tbl_users WHERE username='$username'");
-		if(mysqli_num_rows($check_user) > 0) {
-			$error = "Username sudah digunakan!";
-		} else {
-			// Check if email already exists (if email field exists)
-			if(!empty($email)) {
-				$check_email = mysqli_query($con, "SELECT * FROM tbl_users WHERE email='$email'");
-				if(mysqli_num_rows($check_email) > 0) {
-					$error = "Email sudah digunakan!";
-				}
-			}
+  // Check if username already exists
+  $check_user = mysqli_query($con, "SELECT * FROM tbl_users WHERE username='$username'");
+  if (mysqli_num_rows($check_user) > 0) {
+    $error = 'Username sudah digunakan!';
+  } else {
+    // Check if email already exists (if email field exists)
+    if (!empty($email)) {
+      $check_email = mysqli_query($con, "SELECT * FROM tbl_users WHERE email='$email'");
+      if (mysqli_num_rows($check_email) > 0) {
+        $error = 'Email sudah digunakan!';
+      }
+    }
 
-			if(!isset($error)) {
-				// Insert new user with level 2 (regular user)
-				$sql = mysqli_query($con, "INSERT INTO tbl_users (username, password, nama_pengguna, img, id_lvuser) VALUES ('$username', '$password', '$nama_pengguna', 'avatar2.png', 2)");
-				
-				if($sql) {
-					$success = "Registrasi berhasil! Silakan login.";
-				} else {
-					$error = "Gagal mendaftar. Silakan coba lagi.";
-				}
-			}
-		}
-	}
+    if (!isset($error)) {
+      // Insert new user with level 2 (regular user)
+      $sql = mysqli_query(
+        $con,
+        "INSERT INTO tbl_users (username, password, nama_pengguna, img, id_lvuser) VALUES ('$username', '$password', '$nama_pengguna', 'avatar2.png', 2)",
+      );
 
- ?>
+      if ($sql) {
+        $success = 'Registrasi berhasil! Silakan login.';
+      } else {
+        $error = 'Gagal mendaftar. Silakan coba lagi.';
+      }
+    }
+  }
+}
+?>
 
 <div class="col-lg-6 offset-lg-3">
 	<div class="card">
@@ -49,13 +51,13 @@
 			<h4 class="mb-0 text-center">Daftar Akun Baru</h4>
 		</div>
 		<div class="card-body">
-			<?php if(isset($error)): ?>
+			<?php if (isset($error)): ?>
 				<div class="alert alert-danger">
 					<?= $error ?>
 				</div>
 			<?php endif; ?>
 
-			<?php if(isset($success)): ?>
+			<?php if (isset($success)): ?>
 				<div class="alert alert-success">
 					<?= $success ?>
 					<br>

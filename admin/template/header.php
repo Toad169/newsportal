@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard | SI Blogger</title>
+  <title>Dashboard | PPLG News</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../assets/css/be/fontawesome-free/css/all.min.css">
@@ -44,23 +44,25 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="../assets/img/be/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">SI Blogger</span>
+      <img src="../assets/img/be/img/logo.png" alt="PPLG Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">PPLG News</span>
     </a>
 
     <?php
-        include "../config/config.php";
+    include '../config/config.php';
 
-        $sql = mysqli_query($con, "SELECT * FROM tbl_users WHERE id_user='$_SESSION[id]'");
-        $data = mysqli_fetch_array($sql);
-     ?>
+    $sql = mysqli_query($con, "SELECT * FROM tbl_users WHERE id_user='$_SESSION[id]'");
+    $data = mysqli_fetch_array($sql);
+    ?>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../assets/img/<?= $data['img'] ?>" class="img-circle elevation-2" alt="User Image">
+          <img src="../assets/img/<?= $data[
+            'img'
+          ] ?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?= $_SESSION['pengguna'] ?></a>
@@ -72,7 +74,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <?php if($_SESSION['lvluser'] == 1) { ?>
+          <?php if ($_SESSION['lvluser'] == 1) { ?>
             <li class="nav-item menu-open">
               <a href="index.php?page=home" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -189,7 +191,7 @@
               </a>
             </li> -->
           </li>
-        <?php } elseif($_SESSION['lvluser'] == 2) { ?>
+        <?php } elseif ($_SESSION['lvluser'] == 2) { ?>
           <li class="nav-item menu-open">
               <a href="index.php?page=home" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
