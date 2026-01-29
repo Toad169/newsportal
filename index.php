@@ -43,14 +43,23 @@ if (!isset($_GET['page'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PPLG News | Portal Berita Sekolah</title>
 
+	<link rel="shortcut icon" href="assets/img/be/img/logo.png" type="image/x-icon">
+
+	<!-- Bootstrap 5 CSS -->
+	
+	<!-- Custom Bootstrap overrides (if any) -->
 	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<link rel="stylesheet" href="assets/css/ionicons.min.css">
 	<link rel="stylesheet" href="assets/css/be/fontawesome-free/css/all.min.css">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	<style>
 		:root {
@@ -72,16 +81,16 @@ if (!isset($_GET['page'])) {
 			line-height: 1.6;
 		}
 
-		/* Navbar Styling */
+		/* Navbar Styling - Black with White Text */
 		.navbar {
-			background-color: var(--white) !important;
-			box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-			padding: 1rem 0;
+			background-color: #000000 !important;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+			padding: 0.75rem 0;
 		}
 
 		.navbar-brand {
 			font-weight: 700;
-			color: var(--primary-color) !important;
+			color: #ffffff !important;
 			font-size: 1.25rem;
 		}
 		
@@ -90,7 +99,7 @@ if (!isset($_GET['page'])) {
 		}
 
 		.nav-link {
-			color: var(--text-main) !important;
+			color: #ffffff !important;
 			font-weight: 500;
 			padding: 0.5rem 1rem !important;
 			transition: color 0.2s;
@@ -109,11 +118,85 @@ if (!isset($_GET['page'])) {
 			border: none;
 			box-shadow: var(--hover-shadow);
 			border-radius: 0.5rem;
+			background-color: #ffffff;
 		}
 
 		.dropdown-item {
 			padding: 0.5rem 1.5rem;
 			font-weight: 500;
+			color: var(--text-main);
+		}
+
+		.dropdown-divider {
+			border-color: #e5e7eb;
+		}
+
+		/* Navbar Toggler - White for black background */
+		.navbar-toggler {
+			border-color: rgba(255, 255, 255, 0.3);
+			padding: 0.25rem 0.5rem;
+		}
+
+		.navbar-toggler:focus {
+			box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+		}
+
+		.navbar-toggler-icon {
+			background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.85%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+		}
+
+		/* Mobile Responsive Navbar */
+		@media (max-width: 991.98px) {
+			.navbar-collapse {
+				background-color: #000000;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				margin-top: 1rem;
+				padding-top: 1rem;
+			}
+
+			.navbar-nav {
+				margin-bottom: 1rem;
+			}
+
+			.navbar-nav .nav-item {
+				margin-bottom: 0.25rem;
+			}
+
+			.navbar .d-flex {
+				flex-direction: column;
+				width: 100%;
+				gap: 0.5rem !important;
+			}
+
+			.navbar .d-flex .btn {
+				width: 100%;
+				justify-content: center;
+			}
+
+			.navbar .form-control {
+				min-width: 100%;
+				margin-bottom: 0.5rem;
+			}
+
+			.navbar .d-flex.me-3 {
+				margin-right: 0 !important;
+				margin-bottom: 1rem;
+				width: 100%;
+			}
+
+			.navbar .dropdown-menu {
+				background-color: #ffffff;
+				border: 1px solid rgba(0, 0, 0, 0.1);
+			}
+
+			.navbar .dropdown-item {
+				color: var(--text-main);
+			}
+
+			.navbar .dropdown-item:hover {
+				background-color: #fee2e2;
+				color: var(--primary-light);
+			}
 		}
 
 
@@ -288,16 +371,44 @@ if (!isset($_GET['page'])) {
 			color: var(--text-muted);
 		}
 
-		/* Search styling adjustment for navbar */
+		/* Search styling adjustment for navbar - White on black */
 		.navbar .form-control {
-			background-color: #f3f4f6;
-			border: none;
+			background-color: rgba(255, 255, 255, 0.1);
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			color: #ffffff;
 			min-width: 200px;
+		}
+
+		.navbar .form-control::placeholder {
+			color: rgba(255, 255, 255, 0.6);
 		}
 		
 		.navbar .form-control:focus {
-			background-color: #fff;
+			background-color: rgba(255, 255, 255, 0.15);
 			border: 1px solid var(--primary-light);
+			color: #ffffff;
+		}
+
+		.navbar .btn-outline-light {
+			border-color: rgba(255, 255, 255, 0.3);
+			color: #ffffff;
+		}
+
+		.navbar .btn-outline-light:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+			border-color: rgba(255, 255, 255, 0.5);
+			color: #ffffff;
+		}
+
+		.navbar .btn-outline-primary {
+			border-color: rgba(255, 255, 255, 0.5);
+			color: #ffffff;
+		}
+
+		.navbar .btn-outline-primary:hover {
+			background-color: rgba(255, 255, 255, 0.1);
+			border-color: rgba(255, 255, 255, 0.7);
+			color: #ffffff;
 		}
 		
 		/* Override Bootstrap primary colors */
@@ -334,9 +445,9 @@ if (!isset($_GET['page'])) {
 	        <li class="nav-item">
 	          <a class="nav-link <?= !isset($_GET['page']) || $_GET['page'] == 'beranda' ? 'active' : '' ?>" href="index.php?page=beranda">Beranda</a>
 	        </li>
-	        <li class="nav-item">
+	        <!-- <li class="nav-item">
 	          <a class="nav-link <?= isset($_GET['page']) && $_GET['page'] == 'berita' ? 'active' : '' ?>" href="index.php?page=berita">Berita</a>
-	        </li>
+	        </li> -->
 	        <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 	            Kategori
@@ -355,20 +466,20 @@ if (!isset($_GET['page'])) {
              ?>
 	          </ul>
 	        </li>
-	        <li class="nav-item">
+	        <!-- <li class="nav-item">
 	          <a class="nav-link <?= isset($_GET['page']) && $_GET['page'] == 'galeri' ? 'active' : '' ?>" href="index.php?page=galeri">Galeri</a>
-	        </li>
+	        </li> -->
 	      </ul>
 	      
 	      <!-- Search Bar -->
-	      <form class="d-flex me-3" method="GET" action="index.php">
+	      <form class="d-flex flex-column flex-lg-row me-lg-3 mb-3 mb-lg-0" method="GET" action="index.php">
 	        <input type="hidden" name="page" value="search">
-	        <input class="form-control me-2" type="search" name="q" placeholder="Cari..." aria-label="Search" value="<?= isset(
+	        <input class="form-control me-2 mb-2 mb-lg-0" type="search" name="q" placeholder="Cari..." aria-label="Search" value="<?= isset(
            $_GET['q'],
          )
            ? htmlspecialchars($_GET['q'])
            : '' ?>">
-	        <button class="btn btn-outline-light" type="submit" style="border: 1px solid #d1d5db; color: #6b7280;">
+	        <button class="btn btn-outline-light" type="submit">
 	          <i class="fas fa-search"></i>
 	        </button>
 	      </form>
@@ -377,10 +488,10 @@ if (!isset($_GET['page'])) {
 	      <ul class="navbar-nav">
 	        <?php if (isset($_SESSION['frontend_user_id'])): ?>
 	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle btn btn-primary text-white px-3" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 2rem;">
-	            <i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars(
+	          <a class="nav-link dropdown-toggle btn btn-primary text-white px-3 d-inline-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 2rem;">
+	            <i class="fas fa-user-circle me-1"></i> <span class="d-none d-sm-inline"><?= htmlspecialchars(
                $_SESSION['frontend_nama'],
-             ) ?>
+             ) ?></span><span class="d-sm-none">User</span>
 	          </a>
 	          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
 	            <li><a class="dropdown-item" href="index.php?page=profil"><i class="fas fa-user me-2"></i> Profil</a></li>
@@ -389,8 +500,8 @@ if (!isset($_GET['page'])) {
 	          </ul>
 	        </li>
 	        <?php else: ?>
-	        <li class="nav-item d-flex gap-2">
-	          <a class="btn btn-outline-primary btn-sm px-3" href="index.php?page=login">Login</a>
+	        <li class="nav-item d-flex flex-column flex-lg-row gap-2 w-100 w-lg-auto">
+	          <a class="btn btn-outline-primary btn-sm px-3 text-white" href="index.php?page=login" style="border-color: rgba(255, 255, 255, 0.5);">Login</a>
 	          <a class="btn btn-primary btn-sm px-3" href="index.php?page=register">Daftar</a>
 	        </li>
 	        <?php endif; ?>
@@ -510,7 +621,28 @@ if (!isset($_GET['page'])) {
 		</div>
 	</footer>
 
-	<script src="assets/js/bootstrap.js"></script>
+	<!-- Bootstrap 5 JS Bundle (includes Popper) -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- Initialize Bootstrap dropdowns -->
+	<script>
+		// Ensure dropdowns work properly
+		document.addEventListener('DOMContentLoaded', function() {
+			// Initialize all dropdowns
+			var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'));
+			var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+				return new bootstrap.Dropdown(dropdownToggleEl);
+			});
+			
+			// Fix for dropdowns that might not be working
+			document.querySelectorAll('.dropdown-toggle').forEach(function(element) {
+				element.addEventListener('click', function(e) {
+					e.preventDefault();
+					var dropdown = bootstrap.Dropdown.getInstance(this) || new bootstrap.Dropdown(this);
+					dropdown.toggle();
+				});
+			});
+		});
+	</script>
 </body>
 </html>

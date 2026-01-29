@@ -12,7 +12,7 @@
 }
 
 .form-card-header {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: white;
   padding: 20px 24px;
   border-bottom: none;
@@ -62,8 +62,8 @@
 
 .form-control-modern:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .form-control-modern::placeholder {
@@ -105,8 +105,8 @@ textarea.form-control-modern {
 }
 
 .file-upload-label:hover {
-  border-color: #3b82f6;
-  background: #f0f7ff;
+  border-color: #dc2626;
+  background: #fee2e2;
 }
 
 .file-upload-label.has-file {
@@ -153,11 +153,11 @@ textarea.form-control-modern {
 }
 
 .file-info i {
-  color: #3b82f6;
+  color: #dc2626;
 }
 
 .btn-modern-primary {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: white;
   border: none;
   padding: 14px 32px;
@@ -175,7 +175,7 @@ textarea.form-control-modern {
 
 .btn-modern-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
 }
 
 .btn-modern-primary:active {

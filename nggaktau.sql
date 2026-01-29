@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2026 at 04:38 AM
+-- Generation Time: Jan 24, 2026 at 05:43 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,7 +64,8 @@ CREATE TABLE `tbl_comments` (
 
 INSERT INTO `tbl_comments` (`id_comment`, `id_post`, `nama`, `email`, `komentar`, `status`, `created_at`) VALUES
 (6, 23, 'akucok', '', 'kontol', 'approved', '2026-01-24 02:58:15'),
-(7, 23, 'akucok', '', 'penis', 'approved', '2026-01-24 03:36:05');
+(7, 23, 'akucok', '', 'penis', 'approved', '2026-01-24 03:36:05'),
+(8, 23, 'akucok', '', 'tes', 'approved', '2026-01-24 04:16:07');
 
 -- --------------------------------------------------------
 
@@ -202,7 +203,7 @@ ALTER TABLE `tbl_categories`
 -- AUTO_INCREMENT for table `tbl_comments`
 --
 ALTER TABLE `tbl_comments`
-  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_comment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_gallery`

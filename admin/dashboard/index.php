@@ -94,7 +94,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .stat-card-icon.posts {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #000000 0%, #dc2626 100%);
 }
 
 .stat-card-icon.users {
@@ -125,7 +125,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .stat-card-link {
-  color: #3b82f6;
+  color: #dc2626;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -136,7 +136,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .stat-card-link:hover {
-  color: #1e3a8a;
+  color: #b91c1c;
 }
 
 .modern-card {
@@ -165,7 +165,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .modern-card-title i {
-  color: #3b82f6;
+  color: #dc2626;
   font-size: 18px;
 }
 
@@ -174,7 +174,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .welcome-card {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: white;
   border-radius: 12px;
   padding: 32px;
@@ -265,7 +265,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-modern {
-  background: #3b82f6;
+  background: #dc2626;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -280,10 +280,10 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-modern:hover {
-  background: #2563eb;
+  background: #b91c1c;
   color: white;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 .table-modern {
@@ -330,7 +330,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-link-modern {
-  color: #3b82f6;
+  color: #dc2626;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -341,7 +341,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-link-modern:hover {
-  color: #1e3a8a;
+  color: #b91c1c;
 }
 
 .chart-container {
@@ -506,7 +506,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
         </div>
         <div class="modern-card-body">
           <div style="font-size: 14px; color: #6b7280; line-height: 1.8;">
-            <div><i class="fas fa-database" style="color: #3b82f6; margin-right: 8px;"></i> Database: Aktif</div>
+            <div><i class="fas fa-database" style="color: #dc2626; margin-right: 8px;"></i> Database: Aktif</div>
             <div><i class="fas fa-server" style="color: #10b981; margin-right: 8px;"></i> Server: Online</div>
             <div><i class="fas fa-shield-alt" style="color: #f59e0b; margin-right: 8px;"></i> Keamanan: Aktif</div>
           </div>
@@ -603,14 +603,14 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
       datasets: [{
         data: [<?php foreach($posts_by_category as $cat) { echo $cat['jumlah'].","; } ?>],
         backgroundColor: [
-          '#3b82f6',
-          '#10b981',
-          '#f59e0b',
+          '#dc2626',
+          '#991b1b',
+          '#7f1d1d',
+          '#b91c1c',
           '#ef4444',
-          '#8b5cf6',
-          '#ec4899',
-          '#06b6d4',
-          '#f97316'
+          '#f87171',
+          '#fca5a5',
+          '#fee2e2'
         ],
         borderWidth: 0
       }]
@@ -644,12 +644,12 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
       datasets: [{
         label: 'Jumlah Postingan',
         data: [<?php foreach($posts_by_month as $month) { echo $month['jumlah'].","; } ?>],
-        borderColor: '#3b82f6',
-        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        borderColor: '#dc2626',
+        backgroundColor: 'rgba(220, 38, 38, 0.1)',
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: '#3b82f6',
+        pointBackgroundColor: '#dc2626',
         pointBorderColor: '#ffffff',
         pointBorderWidth: 2,
         pointRadius: 5,
@@ -761,7 +761,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
             <div>
               <div style="font-size: 12px; color: #6b7280; margin-bottom: 4px;">Username</div>
               <div style="font-size: 16px; font-weight: 600; color: #1f2937;">
-                <i class="fas fa-user" style="color: #3b82f6; margin-right: 8px;"></i>
+                <i class="fas fa-user" style="color: #dc2626; margin-right: 8px;"></i>
                 <?= htmlspecialchars($_SESSION['user']) ?>
               </div>
             </div>
@@ -807,8 +807,8 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
             echo $user_month_data['jumlah'].",";
           }
         ?>],
-        backgroundColor: '#3b82f6',
-        borderColor: '#3b82f6',
+        backgroundColor: '#dc2626',
+        borderColor: '#dc2626',
         borderWidth: 0,
         borderRadius: 8
       }]

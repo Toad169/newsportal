@@ -37,7 +37,9 @@ if (isset($_POST['submit'])) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LogIn Admin - SI Blogger</title>
+  <title>LogIn Admin - PPLG News</title>
+
+  <link rel="shortcut icon" href="../assets/img/be/img/logo.png" type="image/x-icon">
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -51,7 +53,7 @@ if (isset($_POST['submit'])) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
+  <div class="card card-outline" style="border-top-color: #dc2626 !important;">
     <div class="card-header text-center">
       <a href="#" class="h1"><b>LogIn</b>Admin</a>
     </div>

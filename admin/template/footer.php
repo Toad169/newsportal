@@ -23,7 +23,7 @@
 <!-- OPTIONAL SCRIPTS -->
 <script src="../assets/js/be/chart.js/Chart.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../assets/js/be/demo.js"></script>
+<!-- <script src="../assets/js/be/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../assets/js/be/pages/dashboard3.js"></script>
 </body>

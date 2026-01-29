@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dashboard | PPLG News</title>
 
+  <link rel="shortcut icon" href="../assets/img/be/img/logo.png" type="image/x-icon">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../assets/css/be/fontawesome-free/css/all.min.css">
   <!-- IonIcons -->
@@ -41,7 +43,7 @@
 
     .main-header .navbar-nav .nav-link:hover {
       background: #f3f4f6;
-      color: #1e3a8a !important;
+      color: #dc2626 !important;
     }
 
     .main-header .navbar-nav .nav-link i {
@@ -50,7 +52,7 @@
 
     /* Sidebar Modernization */
     .main-sidebar {
-      background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%) !important;
+      background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%) !important;
       box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     }
 
@@ -201,15 +203,15 @@
     }
 
     .btn-primary {
-      background: #3b82f6;
-      border-color: #3b82f6;
+      background: #dc2626;
+      border-color: #dc2626;
     }
 
     .btn-primary:hover {
-      background: #2563eb;
-      border-color: #2563eb;
+      background: #b91c1c;
+      border-color: #b91c1c;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
     }
 
     /* Tables */
@@ -228,6 +230,15 @@
 
     .table tbody tr:hover {
       background: #f9fafb;
+    }
+    
+    /* Override AdminLTE primary colors */
+    .card-primary {
+      border-top-color: #dc2626 !important;
+    }
+    
+    .text-primary {
+      color: #dc2626 !important;
     }
   </style>
 </head>
@@ -290,7 +301,7 @@
                with font-awesome or any other icon font library -->
           <?php if ($_SESSION['lvluser'] == 1) { ?>
             <li class="nav-item menu-open">
-              <a href="index.php?page=home" class="nav-link active">
+              <a href="index.php?page=home" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -298,15 +309,31 @@
               </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+              <a href="index.php?page=tampil-beranda" class="nav-link">
+                <i class="nav-icon fas fa-clipboard"></i>
+                <p>
+                  Manajemen Berita
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="index.php?page=tambah-berita" class="nav-link">
+                <i class="nav-icon fas fa-clipboard"></i>
+                <p>
+                  Tambah Berita
+                </p>
+              </a>
+            </li>
+          <li class="nav-item">
+            <!-- <a href="#" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>
                 Posting
                 <i class="right fas fa-angle-left"></i>
               </p>
-            </a>
+            </a> -->
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -328,8 +355,8 @@
                     </a>
                   </li>
                 </ul>
-              </li>
-              <li class="nav-item">
+              </li> -->
+              <!-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
@@ -351,7 +378,7 @@
                     </a>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             </ul>
             <!-- <li class="nav-item">
               <a href="index.php?page=kebijakan" class="nav-link">
@@ -375,7 +402,6 @@
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Galeri
-                  <!-- <span class="right badge badge-danger">New</span> -->
                 </p>
               </a>
             </li>
@@ -392,6 +418,14 @@
                 <i class="nav-icon fas fa-comments"></i>
                 <p>
                   Komentar
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="index.php?page=data-user" class="nav-link">
+                <i class="nav-icon fas fa-users-cog"></i>
+                <p>
+                  Manajemen User
                 </p>
               </a>
             </li>

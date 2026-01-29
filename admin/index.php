@@ -106,6 +106,22 @@ require_once 'template/header.php';
               include 'komentar/approve-komentar.php';
               break;
 
+            case 'data-user':
+              include 'user/data-user.php';
+              break;
+
+            case 'tambah-user':
+              include 'user/tambah-user.php';
+              break;
+
+            case 'edit-user':
+              include 'user/edit-user.php';
+              break;
+
+            case 'hapus-user':
+              include 'user/hapus-user.php';
+              break;
+
             default:
               echo '<center><h3>Maaf. Halaman tidak di temukan !</h3></center>';
               break;

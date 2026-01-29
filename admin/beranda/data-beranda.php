@@ -16,7 +16,7 @@ $sql = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date DESC');
 }
 
 .data-card-header {
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
   color: white;
   padding: 20px 24px;
   border-bottom: none;

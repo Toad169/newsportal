@@ -62,8 +62,8 @@
 
 .form-control-modern:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 }
 
 .form-control-modern::placeholder {
@@ -105,8 +105,8 @@ textarea.form-control-modern {
 }
 
 .file-upload-label:hover {
-  border-color: #3b82f6;
-  background: #f0f7ff;
+  border-color: #dc2626;
+  background: #fee2e2;
 }
 
 .file-upload-label.has-file {
@@ -153,7 +153,7 @@ textarea.form-control-modern {
 }
 
 .file-info i {
-  color: #3b82f6;
+  color: #dc2626;
 }
 
 .btn-modern-primary {

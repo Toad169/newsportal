@@ -4,8 +4,7 @@ $sql = mysqli_query(
   $con,
   "SELECT c.*, p.judul FROM tbl_comments c 
 		LEFT JOIN tbl_posts p ON c.id_post = p.id_post 
-		ORDER BY c.created_at DESC",
-); ?>
+		ORDER BY c.created_at DESC",); ?>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="card">

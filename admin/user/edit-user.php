@@ -2,83 +2,89 @@
 
 include '../config/config.php';
 
-$id = intval($_SESSION['id']); // Sanitize session ID
+// Only allow admin to access user management
+if ($_SESSION['lvluser'] != 1) {
+  echo "<script>alert('Akses Ditolak! Hanya Admin yang dapat mengakses halaman ini.')</script>";
+  echo "<script>window.location.href='index.php?page=home'</script>";
+  exit;
+}
+
+$id = intval($_GET['id']); // Sanitize input
+
+// Get user data
 $sql = mysqli_query($con, "SELECT * FROM tbl_users WHERE id_user='$id'");
 $data = mysqli_fetch_array($sql);
 
 if (!$data) {
-  echo "<script>alert('Data user tidak ditemukan!')</script>";
-  echo "<script>window.location.href='index.php?page=home'</script>";
+  echo "<script>alert('User tidak ditemukan!')</script>";
+  echo "<script>window.location.href='index.php?page=data-user'</script>";
   exit;
 }
+
+// Get user levels for dropdown
+$sql_level = mysqli_query($con, "SELECT * FROM tbl_lvuser");
 ?>
 <div class="row">
-	<div class="col-lg-4 col-xs-12">
+	<div class="col-lg-10 m-auto">
 		<div class="card card-primary">
 			<div class="card-header">
-				<h5 class="text-center">Informasi Akun</h5>
-			</div>
-			<div class="card-body text-center">
-				<img src="../assets/img/<?= htmlspecialchars($data['img']) ?>" alt="<?= htmlspecialchars($data['nama_pengguna']) ?>" class="img-circle" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #ddd;">
-				<h5 class="mt-3 text-primary text-uppercase"><?= htmlspecialchars($data['nama_pengguna']) ?></h5>	
-				<?php if ($_SESSION['lvluser'] == 1) {
-      echo "<h5 class='text-primary'><i class='fas fa-shield-alt'></i> Level User : Admin</h5>";
-    } elseif ($_SESSION['lvluser'] == 2) {
-      echo "<h5 class='text-primary'><i class='fas fa-user'></i> Level User : User</h5>";
-    } ?>
-				<p class="text-muted mt-2">
-					<i class="fas fa-user-circle"></i> <?= htmlspecialchars($data['username']) ?>
-				</p>
-				<?php if ($_SESSION['lvluser'] == 1): ?>
-					<a href="index.php?page=data-user" class="btn btn-info btn-sm mt-2">
-						<i class="fas fa-users-cog"></i> Kelola User
-					</a>
-				<?php endif; ?>
-			</div>
-		</div>
-	</div>
-	<div class="col-lg-8 col-xs-12">
-		<div class="card card-primary">
-			<div class="card-header">
-				<h5 class="text-center">Edit Akun Saya</h5>
+				<h5>Edit User</h5>
 			</div>
 			<div class="card-body">
 				<form method="POST" enctype="multipart/form-data">
 					<div class="row">
-						<div class="col-lg-6 col-xs-12">
+						<div class="col-lg-12 text-center mb-3">
+							<img src="../assets/img/<?= $data['img'] ?>" alt="<?= htmlspecialchars($data['nama_pengguna']) ?>" class="img-circle" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #ddd;">
+							<p class="mt-2"><strong>Foto Saat Ini</strong></p>
+						</div>
+						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="user">Username</label>
 								<input type="text" name="user" id="user" class="form-control" placeholder="Masukkan Username" value="<?= htmlspecialchars($data['username']) ?>" required>
 							</div>
 						</div>
-						<div class="col-lg-6 col-xs-12">
+						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="pass">Password</label>
 								<input type="password" name="pass" id="pass" class="form-control" placeholder="Kosongkan jika tidak ingin mengubah password">
 								<small class="text-muted">Kosongkan jika tidak ingin mengubah password</small>
 							</div>
 						</div>
-						<div class="col-lg-12 col-xs-12">
+						<div class="col-lg-12">
 							<div class="form-group">
 								<label for="pengguna">Nama Pengguna</label>
 								<input type="text" name="pengguna" id="pengguna" class="form-control" placeholder="Masukkan Nama Pengguna" value="<?= htmlspecialchars($data['nama_pengguna']) ?>" required>
 							</div>
 						</div>
-						<div class="col-lg-12 col-xs-12">
+						<div class="col-lg-6">
 							<div class="form-group">
 								<label for="file">Unggah Gambar Baru</label>
-								<div class="mb-2">
-									<small class="text-muted">Foto saat ini:</small><br>
-									<img src="../assets/img/<?= htmlspecialchars($data['img']) ?>" alt="Current photo" style="width: 80px; height: 80px; object-fit: cover; border: 2px solid #ddd; border-radius: 5px;">
-								</div>
 								<input type="file" name="file" id="file" class="form-control" accept="image/png,image/jpeg,image/jpg">
 								<small class="text-muted">Format: PNG, JPG, JPEG. Maksimal 2MB. Kosongkan jika tidak ingin mengubah foto</small>
 							</div>
 						</div>
-						<div class="col-lg-12 col-xs-12">
-							<button class="btn btn-primary btn-block" name="submit">
-								<i class="fas fa-save"></i> Simpan Perubahan
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label for="lvluser">Level User</label>
+								<select name="lvluser" id="lvluser" class="form-control" required>
+									<option value="">Pilih Level User</option>
+									<?php 
+									mysqli_data_seek($sql_level, 0); // Reset pointer
+									while ($level = mysqli_fetch_array($sql_level)): 
+										$selected = ($data['id_lvuser'] == $level['id_lvuser']) ? 'selected' : '';
+									?>
+										<option value="<?= $level['id_lvuser'] ?>" <?= $selected ?>><?= htmlspecialchars($level['leveluser']) ?></option>
+									<?php endwhile; ?>
+								</select>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<button name="submit" class="btn btn-primary btn-block">
+								<i class="fas fa-save"></i> Update User
 							</button>
+							<a href="index.php?page=data-user" class="btn btn-secondary btn-block">
+								<i class="fas fa-arrow-left"></i> Kembali
+							</a>
 						</div>
 					</div>
 				</form>
@@ -88,16 +94,17 @@ if (!$data) {
 </div>
 
 <?php if (isset($_POST['submit'])) {
-  $id = intval($_SESSION['id']); // Sanitize session ID
+  $id = intval($_GET['id']); // Sanitize input
   $user = mysqli_real_escape_string($con, $_POST['user']);
   $pass = $_POST['pass'];
   $pengguna = mysqli_real_escape_string($con, $_POST['pengguna']);
+  $lvluser = $_POST['lvluser'];
 
   // Check if username already exists (excluding current user)
   $check_user = mysqli_query($con, "SELECT * FROM tbl_users WHERE username='$user' AND id_user != '$id'");
   if (mysqli_num_rows($check_user) > 0) {
     echo "<script>alert('Username sudah digunakan! Silakan gunakan username lain.')</script>";
-    echo "<script>window.location.href='index.php?page=user'</script>";
+    echo "<script>window.location.href='index.php?page=edit-user&id=$id'</script>";
     exit;
   }
 
@@ -118,17 +125,17 @@ if (!$data) {
 
     if (in_array($ekstensi, $ekstensi_boleh) === true) {
       if ($ukuran < 2000000) {
-        // Generate unique filename to avoid conflicts
+        // Generate unique filename
         $gambar = time() . '_' . $gambar_new;
         move_uploaded_file($file_tmp, '../assets/img/' . $gambar);
       } else {
         echo "<script>alert('Ukuran file tidak boleh lebih dari 2MB!')</script>";
-        echo "<script>window.location.href='index.php?page=user'</script>";
+        echo "<script>window.location.href='index.php?page=edit-user&id=$id'</script>";
         exit;
       }
     } else {
       echo "<script>alert('Ekstensi file tidak diizinkan! Hanya PNG, JPG, JPEG.')</script>";
-      echo "<script>window.location.href='index.php?page=user'</script>";
+      echo "<script>window.location.href='index.php?page=edit-user&id=$id'</script>";
       exit;
     }
   }
@@ -138,29 +145,21 @@ if (!$data) {
     $pass_hash = md5($pass);
     $sql = mysqli_query(
       $con,
-      "UPDATE tbl_users SET username='$user', password='$pass_hash', nama_pengguna='$pengguna', img='$gambar' WHERE id_user='$id'"
+      "UPDATE tbl_users SET username='$user', password='$pass_hash', nama_pengguna='$pengguna', img='$gambar', id_lvuser='$lvluser' WHERE id_user='$id'"
     );
   } else {
     $sql = mysqli_query(
       $con,
-      "UPDATE tbl_users SET username='$user', nama_pengguna='$pengguna', img='$gambar' WHERE id_user='$id'"
+      "UPDATE tbl_users SET username='$user', nama_pengguna='$pengguna', img='$gambar', id_lvuser='$lvluser' WHERE id_user='$id'"
     );
   }
 
   if ($sql) {
-    // Update session if nama_pengguna changed
-    if ($pengguna != $_SESSION['pengguna']) {
-      $_SESSION['pengguna'] = $pengguna;
-    }
-    if ($user != $_SESSION['user']) {
-      $_SESSION['user'] = $user;
-    }
-    
-    echo "<script>alert('Data Berhasil Diubah!')</script>";
-    echo "<script>window.location.href='index.php?page=user'</script>";
+    echo "<script>alert('User Berhasil Diupdate!')</script>";
+    echo "<script>window.location.href='index.php?page=data-user'</script>";
   } else {
-    echo "<script>alert('Gagal mengubah data!')</script>";
-    echo "<script>window.location.href='index.php?page=user'</script>";
+    echo "<script>alert('Gagal mengupdate user!')</script>";
+    echo "<script>window.location.href='index.php?page=edit-user&id=$id'</script>";
   }
 }
 ?>
