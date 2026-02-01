@@ -4,7 +4,7 @@ $sql = mysqli_query($con, 'SELECT * FROM tbl_gallery ORDER BY id_img DESC');
 ?>
 
 <div class="col-12 mb-4">
-	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #dc2626 !important; display: inline-block; color: #dc2626;">
+	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #4988C4 !important; display: inline-block; color: #4988C4;">
 		<i class="fas fa-images me-2"></i> Galeri Kegiatan
 	</h4>
 	<p class="text-muted">Dokumentasi kegiatan dan momen penting.</p>

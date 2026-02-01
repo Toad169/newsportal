@@ -43,7 +43,7 @@
 
     .main-header .navbar-nav .nav-link:hover {
       background: #f3f4f6;
-      color: #dc2626 !important;
+      color: #4988C4 !important;
     }
 
     .main-header .navbar-nav .nav-link i {
@@ -203,13 +203,13 @@
     }
 
     .btn-primary {
-      background: #dc2626;
-      border-color: #dc2626;
+      background: #4988C4;
+      border-color: #4988C4;
     }
 
     .btn-primary:hover {
-      background: #b91c1c;
-      border-color: #b91c1c;
+      background: #1C4D8D;
+      border-color: #1C4D8D;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
     }
@@ -234,11 +234,11 @@
     
     /* Override AdminLTE primary colors */
     .card-primary {
-      border-top-color: #dc2626 !important;
+      border-top-color: #4988C4 !important;
     }
     
     .text-primary {
-      color: #dc2626 !important;
+      color: #4988C4 !important;
     }
   </style>
 </head>

@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline" style="border-top-color: #dc2626 !important;">
+  <div class="card card-outline" style="border-top-color: #4988C4 !important;">
     <div class="card-header text-center">
       <a href="#" class="h1"><b>LogIn</b>Admin</a>
     </div>
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
           <!-- /.col -->
         </div>
       </form>
-      <br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center>
+      <!-- <br><center><p>Repost by <a href='https://stokcoding.com/' title='StokCoding.com' target='_blank'>StokCoding.com</a></p></center> -->
       
     </div>
     <!-- /.card-body -->

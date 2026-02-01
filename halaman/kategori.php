@@ -21,7 +21,7 @@ if ($kategori_id > 0) {
 ?>
 
 <div class="col-12 mb-4">
-	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #dc2626 !important; display: inline-block; color: #dc2626;">
+	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #4988C4 !important; display: inline-block; color: #4988C4;">
 		<i class="fas fa-tag me-2"></i> Kategori: <?= htmlspecialchars($kategori_nama) ?>
 	</h4>
 </div>

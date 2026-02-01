@@ -14,7 +14,7 @@ if (!empty($search_term)) {
 ?>
 
 <div class="col-12 mb-4">
-	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #dc2626 !important; display: inline-block; color: #dc2626;">
+	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #4988C4 !important; display: inline-block; color: #4988C4;">
 		<i class="fas fa-search me-2"></i> Hasil Pencarian
 	</h4>
 	<?php if (!empty($search_term)): ?>

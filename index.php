@@ -64,8 +64,8 @@ if (!isset($_GET['page'])) {
 	<style>
 		:root {
 			--primary-color: #000000;
-			--primary-light: #dc2626;
-			--secondary-color: #991b1b;
+			--primary-light: #4988C4;
+			--secondary-color: #1C4D8D;
 			--bg-color: #f3f4f6;
 			--text-main: #1f2937;
 			--text-muted: #6b7280;
@@ -298,8 +298,8 @@ if (!isset($_GET['page'])) {
 		}
 
 		.btn-primary:hover {
-			background-color: #b91c1c;
-			border-color: #b91c1c;
+			background-color: #4988C4;
+			border-color: #1C4D8D;
 			color: var(--white);
 		}
 		
@@ -364,7 +364,7 @@ if (!isset($_GET['page'])) {
 		}
 		
 		.breadcrumb-item a:hover {
-			color: #b91c1c;
+			color: #4988C4;
 		}
 		
 		.breadcrumb-item.active {

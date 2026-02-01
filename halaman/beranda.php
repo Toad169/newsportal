@@ -4,7 +4,7 @@ $query = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date DESC');
 ?>
 
 <div class="col-12 mb-4">
-	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #dc2626 !important; display: inline-block; color: #dc2626;">
+	<h4 class="mb-3 border-bottom pb-2" style="border-bottom: 2px solid #4988C4 !important; display: inline-block; color: #4988C4;">
 		<i class="fas fa-newspaper me-2"></i> Berita Terbaru
 	</h4>
 </div>
@@ -16,7 +16,7 @@ $query = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date DESC');
 				<div class="position-relative">
 					<img src="assets/file/post/<?= $data['img'] ?>" alt="<?= htmlspecialchars($data['judul']) ?>" class="card-img-top" style="height: 220px; object-fit: cover;">
 					<div class="card-img-overlay p-0">
-						<span class="badge position-absolute top-0 end-0 m-3 shadow-sm text-white" style="background-color: #dc2626;">
+						<span class="badge position-absolute top-0 end-0 m-3 shadow-sm text-white" style="background-color: #4988C4;">
 							<?= isset($data['kategori']) ? $data['kategori'] : 'Berita' ?>
 						</span>
 					</div>

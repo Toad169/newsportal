@@ -32,7 +32,7 @@ if (isset($_POST['update'])) {
 <div class="col-lg-8 offset-lg-2 mt-4">
 	<div class="card shadow border-0">
 		<div class="card-header bg-white border-bottom py-3">
-			<h5 class="mb-0 fw-bold" style="color: #dc2626;"><i class="fas fa-user-cog me-2"></i> Pengaturan Profil</h5>
+			<h5 class="mb-0 fw-bold" style="color: #4988C4;"><i class="fas fa-user-cog me-2"></i> Pengaturan Profil</h5>
 		</div>
 		<div class="card-body p-4">
 			<?php if (isset($success)): ?>

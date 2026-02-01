@@ -94,7 +94,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .stat-card-icon.posts {
-  background: linear-gradient(135deg, #000000 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #000000 0%, #1C4D8D 100%);
 }
 
 .stat-card-icon.users {
@@ -125,7 +125,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .stat-card-link {
-  color: #dc2626;
+  color: #4988C4;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -136,7 +136,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .stat-card-link:hover {
-  color: #b91c1c;
+  color: #1C4D8D;
 }
 
 .modern-card {
@@ -165,7 +165,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .modern-card-title i {
-  color: #dc2626;
+  color: #4988C4;
   font-size: 18px;
 }
 
@@ -265,7 +265,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-modern {
-  background: #dc2626;
+  background: #4988C4;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -280,7 +280,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-modern:hover {
-  background: #b91c1c;
+  background: #1C4D8D;
   color: white;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
@@ -330,7 +330,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-link-modern {
-  color: #dc2626;
+  color: #4988C4;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -341,7 +341,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 }
 
 .btn-link-modern:hover {
-  color: #b91c1c;
+  color: #1C4D8D;
 }
 
 .chart-container {

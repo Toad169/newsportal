@@ -43,7 +43,7 @@ $data = mysqli_fetch_array($query);
    }
    ?>
 			<div class="mb-3">
-				<span class="badge me-2 text-white" style="background-color: #dc2626;"><?= htmlspecialchars($kategori_nama) ?></span>
+				<span class="badge me-2 text-white" style="background-color: #4988C4;"><?= htmlspecialchars($kategori_nama) ?></span>
 				<span class="text-muted small"><i class="far fa-calendar-alt me-1"></i> <?= date('d M Y', strtotime($data['date'])) ?></span>
 				<span class="text-muted small mx-2">•</span>
 				<span class="text-muted small"><i class="far fa-user me-1"></i> <?= htmlspecialchars($data['author']) ?></span>
@@ -60,7 +60,7 @@ $data = mysqli_fetch_array($query);
 	<!-- Comments Section -->
 	<div class="card mt-4 mb-5">
 		<div class="card-header bg-white border-bottom py-3">
-			<h5 class="mb-0" style="color: #dc2626;">
+			<h5 class="mb-0" style="color: #4988C4;">
 				<i class="far fa-comments me-2"></i> 
 				Komentar (<?php
     $comment_count = mysqli_query($con, "SELECT * FROM tbl_comments WHERE id_post='$id' AND status='approved'");
@@ -77,7 +77,7 @@ $data = mysqli_fetch_array($query);
       while ($comment = mysqli_fetch_array($comments_query)): ?>
 					<div class="d-flex mb-4 border-bottom pb-3">
 						<div class="flex-shrink-0">
-							<div class="rounded-circle bg-light d-flex align-items-center justify-content-center fw-bold" style="width: 50px; height: 50px; font-size: 1.2rem; color: #dc2626;">
+							<div class="rounded-circle bg-light d-flex align-items-center justify-content-center fw-bold" style="width: 50px; height: 50px; font-size: 1.2rem; color: #4988C4;">
 								<?= strtoupper(substr($comment['nama'], 0, 1)) ?>
 							</div>
 						</div>

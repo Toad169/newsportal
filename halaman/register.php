@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
 					</div>
 					
 					<div class="col-12 mt-4">
-						<button type="submit" name="submit" class="btn w-100 py-2 fw-bold text-white" style="background-color: #dc2626; border-color: #dc2626;">
+						<button type="submit" name="submit" class="btn w-100 py-2 fw-bold text-white" style="background-color: #4988C4; border-color: #4988C4;">
 							<i class="fas fa-user-plus me-2"></i> Daftar Sekarang
 						</button>
 					</div>
