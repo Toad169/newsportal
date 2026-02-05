@@ -16,8 +16,19 @@ $query = mysqli_query($con, 'SELECT * FROM tbl_posts ORDER BY date DESC');
 				<div class="position-relative">
 					<img src="assets/file/post/<?= $data['img'] ?>" alt="<?= htmlspecialchars($data['judul']) ?>" class="card-img-top" style="height: 220px; object-fit: cover;">
 					<div class="card-img-overlay p-0">
+						<?php
+						$catName = 'Berita';
+						if (!empty($data['id_kategori'])) {
+							$id_k = (int) $data['id_kategori'];
+							$resCat = mysqli_query($con, "SELECT nama_kategori FROM tbl_categories WHERE id_kategori = $id_k LIMIT 1");
+							if ($resCat && mysqli_num_rows($resCat) > 0) {
+								$rowCat = mysqli_fetch_assoc($resCat);
+								$catName = $rowCat['nama_kategori'];
+							}
+						}
+						?>
 						<span class="badge position-absolute top-0 end-0 m-3 shadow-sm text-white" style="background-color: #4988C4;">
-							<?= isset($data['kategori']) ? $data['kategori'] : 'Berita' ?>
+							<?= htmlspecialchars($catName) ?>
 						</span>
 					</div>
 				</div>
