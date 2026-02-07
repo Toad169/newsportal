@@ -3,6 +3,6 @@
 $host = 'localhost';
 $user = 'root';
 $pass = '';
-$db = 'nggaktau';
+$db = 'berita';
 
 $con = mysqli_connect($host, $user, $pass, $db);
