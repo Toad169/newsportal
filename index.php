@@ -204,7 +204,7 @@ if (!isset($_GET['page'])) {
 
 		/* Header/Hero Section */
 		#header {
-			background: linear-gradient(135deg, var(--primary-color) 0%, #1a1a1a 100%);
+			background: linear-gradient(135deg, var(--primary-color) 0%, rgb(25, 34, 112) 100%);
 			color: var(--white);
 			padding: 4rem 0;
 			margin-bottom: 2rem;

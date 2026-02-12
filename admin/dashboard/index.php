@@ -441,7 +441,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
   </div>
 
   <!-- Charts Row -->
-  <div class="row mb-32">
+  <!-- <div class="row mb-32">
     <div class="col-lg-6 mb-4">
       <div class="modern-card">
         <div class="modern-card-header">
@@ -472,11 +472,11 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Additional Stats Row -->
   <div class="row mb-32">
-    <div class="col-lg-4 mb-4">
+    <!-- <div class="col-lg-4 mb-4">
       <div class="progress-card">
         <div class="progress-value"><?= $data_approved_comments ?></div>
         <div class="progress-label">Komentar Disetujui dari <?= $data_comments ?> total</div>
@@ -495,7 +495,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
           <i class="fas fa-eye"></i> Lihat Galeri
         </a>
       </div>
-    </div>
+    </div> -->
     <div class="col-lg-4 mb-4">
       <div class="modern-card">
         <div class="modern-card-header">
@@ -717,7 +717,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
 
   <div class="row mb-32">
     <div class="col-lg-4 mb-4">
-      <div class="stat-card">
+      <!-- <div class="stat-card">
         <div>
           <div class="stat-card-icon posts">
             <i class="fas fa-newspaper"></i>
@@ -728,10 +728,10 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
         <a href="index.php?page=tampil-berita" class="stat-card-link">
           Lihat Semua <i class="fas fa-arrow-right"></i>
         </a>
-      </div>
+      </div> -->
     </div>
     <div class="col-lg-8 mb-4">
-      <div class="modern-card">
+      <!-- <div class="modern-card">
         <div class="modern-card-header">
           <h3 class="modern-card-title">
             <i class="fas fa-chart-bar"></i>
@@ -743,12 +743,12 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
             <canvas id="userPostChart"></canvas>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 
   <div class="row">
-    <div class="col-lg-12">
+    <!-- <div class="col-lg-12">
       <div class="modern-card">
         <div class="modern-card-header">
           <h3 class="modern-card-title">
@@ -787,7 +787,7 @@ $recent_comments = mysqli_query($con, 'SELECT c.*, p.judul FROM tbl_comments c L
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <script>

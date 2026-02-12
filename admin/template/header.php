@@ -397,14 +397,14 @@
                 </p>
               </a>
             </li> -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="index.php?page=galeri" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>
                   Galeri
                 </p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="index.php?page=data-kategori" class="nav-link">
                 <i class="nav-icon fas fa-tags"></i>
@@ -448,7 +448,23 @@
                 </p>
               </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
+              <a href="index.php?page=tampil-beranda" class="nav-link">
+                <i class="nav-icon fas fa-clipboard"></i>
+                <p>
+                  Manajemen Berita
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="index.php?page=tambah-berita" class="nav-link">
+                <i class="nav-icon fas fa-clipboard"></i>
+                <p>
+                  Tambah Berita
+                </p>
+              </a>
+            </li> -->
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-clipboard"></i>
               <p>
@@ -481,7 +497,7 @@
                 </ul>
               </li>
             </ul>
-          </li>
+          </li> -->
         <?php } ?>
           <li class="nav-item">
               <a href="index.php?page=user" class="nav-link">

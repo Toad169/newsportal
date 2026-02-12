@@ -1,0 +1,129 @@
+<?php
+include "config/config.php";
+
+$id = $_GET['id'];
+$query = mysqli_query($con, "SELECT p.*, c.category_name, c.category_color, c.category_slug, u.nama_pengguna as author_name, u.img as user_img
+                             FROM tbl_posts p 
+                             JOIN tbl_category c ON p.id_category = c.id_category 
+                             JOIN tbl_users u ON p.author = u.id_user
+                             WHERE p.id_post='$id'");
+
+if (mysqli_num_rows($query) > 0) {
+
+    $data = mysqli_fetch_assoc($query);
+
+    $catColor = [
+        'berita' => 'bg-primary',
+        'scholarship' => 'bg-success',
+        'campus-news' => 'bg-info',
+        'achievements' => 'bg-danger',
+        'student-life' => 'bg-purple'
+    ][$data['category_slug']] ?? 'bg-secondary';
+
+    // Get related posts with author info
+    $relatedQuery = mysqli_query($con, "SELECT p.*, c.category_name, c.category_color, c.category_slug, u.nama_pengguna as author_name
+                                        FROM tbl_posts p 
+                                        JOIN tbl_category c ON p.id_category = c.id_category 
+                                        JOIN tbl_users u ON p.author = u.id_user
+                                        WHERE p.id_category = '{$data['id_category']}' AND p.id_post != '$id' 
+                                        ORDER BY p.date DESC LIMIT 3");
+    ?>
+
+    <div class="col-lg-8">
+        <!-- Breadcrumb -->
+        <!-- <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php?page=beranda">Beranda</a></li>
+                <li class="breadcrumb-item"><a href="index.php?page=berita">Berita</a></li>
+                <li class="breadcrumb-item active">Detail Artikel</li>
+            </ol>
+        </nav> -->
+
+        <!-- Article Content -->
+        <article>
+            <h1 class="fw-bold mb-3"><?= $data['judul'] ?></h1>
+
+            <div class="d-flex align-items-center mb-4">
+                <div class="d-flex align-items-center me-3">
+                    <i class="bi bi-calendar3 text-primary me-2"></i>
+                    <span class="text-muted"><?= date('d F Y', strtotime($data['date'])) ?></span>
+                </div>
+                <div class="d-flex align-items-center me-3">
+                    <i class="bi bi-person-circle text-primary me-2"></i>
+                    <span class="text-muted"><?= $data['author_name'] ?></span>
+                </div>
+                <span class="badge <?= $catColor ?>"><?= strtoupper($data['category_name']) ?></span>
+            </div>
+
+            <div class="article-image mb-4">
+                <img src="assets/file/post/<?= $data['img'] ?>" alt="<?= $data['judul'] ?>"
+                    class="img-fluid rounded shadow">
+            </div>
+
+            <div class="article-content">
+                <?= $parsedown->text($data['artikel']) ?>
+            </div>
+        </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        <!-- Author Info -->
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">Tentang Penulis</h5>
+                <div class="d-flex align-items-center mb-3">
+                    <?php if (!empty($data['user_img'])): ?>
+                        <img src="assets/img/user/<?= $data['user_img'] ?>" alt="<?= $data['author_name'] ?>" 
+                             class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                    <?php else: ?>
+                        <div class="rounded-circle bg-primary text-white p-3 me-3">
+                            <i class="bi bi-person-fill" style="font-size: 1.5rem;"></i>
+                        </div>
+                    <?php endif; ?>
+                    <div>
+                        <h6 class="fw-bold mb-1"><?= $data['author_name'] ?></h6>
+                        <p class="text-muted small mb-0">Penulis Kabar Kuliah</p>
+                    </div>
+                </div>
+                <p class="small text-muted">
+                    Artikel ini ditulis oleh <?= $data['author_name'] ?> untuk memberikan informasi terpercaya seputar dunia
+                    perkuliahan.
+                </p>
+            </div>
+        </div>
+
+        <!-- Related Articles -->
+        <?php if (mysqli_num_rows($relatedQuery) > 0): ?>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold mb-3">Artikel Terkait</h5>
+                    <?php while ($related = mysqli_fetch_assoc($relatedQuery)): ?>
+                        <div class="mb-3 pb-3 border-bottom">
+                            <h6 class="fw-bold">
+                                <a href="index.php?page=detail&id=<?= $related['id_post'] ?>" class="text-decoration-none">
+                                    <?= substr($related['judul'], 0, 60) ?>...
+                                </a>
+                            </h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><?= date('d M Y', strtotime($related['date'])) ?></small>
+                                <small
+                                    class="badge <?= $related['category_color'] ?>"><?= strtoupper($related['category_name']) ?></small>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+
+<?php } else { ?>
+    <div class="col-12 text-center py-5">
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle display-4 mb-3"></i>
+            <h4>Artikel tidak ditemukan</h4>
+            <p>Artikel yang Anda cari tidak tersedia atau telah dihapus.</p>
+            <a href="index.php?page=beranda" class="btn btn-primary">Kembali ke Beranda</a>
+        </div>
+    </div>
+<?php } ?>
